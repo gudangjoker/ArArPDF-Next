@@ -82,8 +82,8 @@ jobs:
           fi
 
       # one APK per ABI (each about half the size of one holding both): 64-bit ARM for most
-      # phones (pdfcraft-android-<version>.apk), 32-bit ARM for older and low-end ones
-      # (pdfcraft-android-<version>-armeabi-v7a.apk)
+      # phones ("ArAr-PDF-Next v<version>.apk"), 32-bit ARM for older and low-end ones
+      # ("ArAr-PDF-Next v<version>-armeabi-v7a.apk")
       - name: Build
         working-directory: apps/pdfcraft-android/android
         env:
@@ -96,7 +96,7 @@ jobs:
           for abi in arm64-v8a armeabi-v7a; do
             ./gradlew assembleRelease "-Ppdfcraft.abis=$abi" "-Ppdfcraft.version=$VERSION" --no-daemon
             suffix=""; [ "$abi" = arm64-v8a ] || suffix="-$abi"
-            cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/dist/arar-pdf-next-$VERSION$suffix.apk"
+            cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/dist/ArAr-PDF-Next v$VERSION$suffix.apk"
           done
 
       - name: APK
@@ -141,7 +141,28 @@ jobs:
           name: release-apk
           path: dist
 
-      - name: Draft the release
+      - name: Publish the release
         run: |
-          gh release create "$GITHUB_REF_NAME" --draft --verify-tag --title "$GITHUB_REF_NAME" --notes "## What's Changed" -- dist/*
-          echo "Draft **$GITHUB_REF_NAME** is ready: fill in What's Changed and publish it." >>"$GITHUB_STEP_SUMMARY"
+          v="${GITHUB_REF_NAME#v}"
+          assets=()
+          for f in dist/*.apk; do
+            assets+=("$f#$(basename "$f")")
+          done
+          notes="$(sed "s/__VERSION__/$v/g" <<'EOF'
+          ## ArAr PDF Next v__VERSION__
+
+          Rilis produksi bertanda tangan (*signed release*) untuk Android (`com.ararpdf.next`).
+
+          ### Unduhan APK
+          - **`ArAr-PDF-Next v__VERSION__.apk`** — Direkomendasikan untuk sebagian besar ponsel Android 64-bit (`arm64-v8a`).
+          - **`ArAr-PDF-Next v__VERSION__-armeabi-v7a.apk`** — Untuk perangkat Android 32-bit (`armeabi-v7a`).
+
+          ### Sorotan Rilis
+          - Rebranding penuh **ArAr PDF Next** (`com.ararpdf.next`) dengan logo baru untuk ikon launcher, adaptive icon (termasuk Material You monochrome Android 13+), dan package installer.
+          - Antarmuka Android-native berbasis Material 3 dengan dukungan penuh **Mode Terang (Light)** dan **Mode Gelap (Dark)** mengikuti palet warna logo, plus tombol cepat ganti tema.
+          - Lokalisasi **Bahasa Indonesia (100%)** dan **Bahasa Inggris**.
+          - Pengalaman PDF Viewer *edge-to-edge* dengan judul dokumen di top bar, penghitung hasil pencarian, properti dokumen, mode dua halaman, serta seluruh fitur engine Rust secara offline (baca, edit teks/gambar, anotasi, isi formulir, tanda tangan digital, pindai kamera, OCR offline, kompres, gabung, potong, dan baca lantang).
+          EOF
+          )"
+          gh release create "$GITHUB_REF_NAME" --verify-tag --latest --title "ArAr PDF Next v$v" --notes "$notes" -- "${assets[@]}"
+          echo "Published release **ArAr PDF Next v$v**." >>"$GITHUB_STEP_SUMMARY"
