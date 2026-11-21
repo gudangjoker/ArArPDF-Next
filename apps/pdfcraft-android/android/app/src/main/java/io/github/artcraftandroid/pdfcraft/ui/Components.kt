@@ -111,7 +111,7 @@ fun BarIcon(
     Box(
         modifier
             .size(size)
-            .clip(RoundedCornerShape(6.dp))
+            .clip(RoundedCornerShape(12.dp))
             .background(if (selected) pdfColors.pressed else Color.Transparent)
             .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
             .semantics { contentDescription = description },
@@ -203,14 +203,16 @@ fun PdfSheet(
                 enter = slideInVertically(tween(PdfMotion.SHEET_IN_MS, easing = LinearOutSlowInEasing)) { it },
                 exit = slideOutVertically(tween(PdfMotion.SHEET_OUT_MS, easing = FastOutLinearInEasing)) { it },
             ) {
+                val sheetShape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
                 Column(
                     modifier
                         .fillMaxWidth()
                         .heightIn(max = maxH)
                         .offset { IntOffset(0, drag.roundToInt()) }
                         .onSizeChanged { height = it.height }
+                        .clip(sheetShape)
                         .background(background ?: pdfColors.surface)
-                        .drawBehind { drawRect(divider, size = androidx.compose.ui.geometry.Size(size.width, 1.dp.toPx())) }
+                        .border(1.dp, divider.copy(alpha = 0.6f), sheetShape)
                         .pointerInput(Unit) { detectTapGestures() },
                 ) {
                     // the handle: drag it (or the sheet's top) down to close
@@ -341,28 +343,21 @@ fun BoxScope.HintToast(text: String?, modifier: Modifier = Modifier, alignment: 
 @Composable
 fun PdfSwitch(checked: Boolean, onChange: (Boolean) -> Unit, modifier: Modifier = Modifier) {
     val c = pdfColors
-    val track = if (checked) c.accent else if (c.dark) Color(0xFF959595) else Color(0xFFB0B0B0)
+    val track = if (checked) c.switchOn else c.switchOff
     Box(
         modifier
-            .size(width = 36.dp, height = 18.dp)
+            .size(width = 44.dp, height = 24.dp)
             .clip(CircleShape)
-            .background(if (checked) track else Color.Transparent)
-            .then(if (checked) Modifier else Modifier.background(Color.Transparent))
+            .background(track)
             .clickable(role = Role.Switch) { onChange(!checked) },
     ) {
-        if (!checked) {
-            Box(Modifier.fillMaxSize().clip(CircleShape).background(track.copy(alpha = 0.0f)))
-            androidx.compose.foundation.Canvas(Modifier.fillMaxSize()) {
-                drawRoundRect(track, cornerRadius = androidx.compose.ui.geometry.CornerRadius(size.height / 2), style = androidx.compose.ui.graphics.drawscope.Stroke(2.dp.toPx()))
-            }
-        }
         Box(
             Modifier
                 .align(if (checked) Alignment.CenterEnd else Alignment.CenterStart)
-                .padding(horizontal = 4.dp)
-                .size(10.dp)
+                .padding(horizontal = 3.dp)
+                .size(18.dp)
                 .clip(CircleShape)
-                .background(if (checked) c.surface else track),
+                .background(if (checked) Color.White else if (c.dark) Color(0xFFCBD5E1) else Color.White),
         )
     }
 }
@@ -402,19 +397,20 @@ fun PdfDialog(
         // the screen behind is shaded 60 % black, as the reference's dialogs leave it
         val window = (androidx.compose.ui.platform.LocalView.current.parent as? androidx.compose.ui.window.DialogWindowProvider)?.window
         androidx.compose.runtime.SideEffect { window?.setDimAmount(0.6f) }
-        Box(Modifier.fillMaxWidth().padding(horizontal = if (list) 68.dp else 51.dp), contentAlignment = Alignment.Center) {
+        Box(Modifier.fillMaxWidth().padding(horizontal = if (list) 40.dp else 28.dp), contentAlignment = Alignment.Center) {
             Column(
-                Modifier.fillMaxWidth().clip(RoundedCornerShape(4.dp)).background(if (list) (if (c.dark) Color(0xFF424242) else Color.White) else c.surface)
+                Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(if (list) c.surfaceRaised else c.surface)
+                    .border(1.dp, c.divider.copy(alpha = 0.7f), RoundedCornerShape(24.dp))
                     .padding(if (list) PaddingValues(vertical = 8.dp) else PaddingValues(24.dp)),
             ) {
                 if (title != null) {
-                    Text(title, color = c.label, fontSize = 17.sp, fontWeight = FontWeight.SemiBold)
+                    Text(title, color = c.label, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
                     Spacer(Modifier.height(10.dp))
                 }
                 content?.invoke(this)
                 if (confirm != null || dismiss != null) {
-                    Spacer(Modifier.height(20.dp))
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(18.dp, Alignment.End)) {
+                    Spacer(Modifier.height(22.dp))
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.End)) {
                         if (dismiss != null) DialogPill(dismiss, filled = false, enabled = true, onClick = onDismissButton)
                         if (confirm != null) DialogPill(confirm, filled = true, enabled = confirmEnabled, red = destructive, onClick = onConfirm)
                     }
@@ -427,18 +423,18 @@ fun PdfDialog(
 @Composable
 private fun DialogPill(label: String, filled: Boolean, enabled: Boolean, red: Boolean = false, onClick: () -> Unit) {
     val c = pdfColors
-    val fill = if (red) c.red else Color(0xFF1473E6)
+    val fill = if (red) c.red else c.button
     Box(
         Modifier.heightIn(min = 42.dp).widthIn(min = 88.dp).clip(RoundedCornerShape(21.dp))
-            .then(if (filled) Modifier.background(if (enabled) fill else c.pressed) else Modifier.border(2.dp, c.textSecondary, RoundedCornerShape(21.dp)))
+            .then(if (filled) Modifier.background(if (enabled) fill else c.pressed) else Modifier.border(1.5.dp, c.divider, RoundedCornerShape(21.dp)))
             .clickable(enabled = enabled, onClick = onClick).padding(horizontal = 18.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Text(label, color = if (filled) (if (enabled) Color.White else c.textSecondary) else c.label, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
+        Text(label, color = if (filled) (if (enabled) Color.White else c.textSecondary) else c.label, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
     }
 }
 
-/** A dialog's text field: 48 dp tall, outlined (2 dp blue while focused, red when wrong), its hint in italics. */
+/** A dialog's text field: 50 dp tall, rounded, outlined (2 dp accent while focused, red when wrong). */
 @Composable
 fun PdfField(
     value: String,
@@ -455,17 +451,18 @@ fun PdfField(
     var focused by remember { mutableStateOf(false) }
     var visible by remember { mutableStateOf(false) }
     Row(
-        modifier.fillMaxWidth().height(48.dp).clip(RoundedCornerShape(4.dp))
-            .border(if (focused || error) 2.dp else 1.dp, if (error) c.red else if (focused) Color(0xFF378EF0) else c.textSecondary, RoundedCornerShape(4.dp))
-            .padding(start = 12.dp),
+        modifier.fillMaxWidth().height(50.dp).clip(RoundedCornerShape(12.dp))
+            .background(c.surfaceRaised.copy(alpha = 0.55f))
+            .border(if (focused || error) 2.dp else 1.dp, if (error) c.red else if (focused) c.accent else c.divider, RoundedCornerShape(12.dp))
+            .padding(start = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(Modifier.weight(1f), contentAlignment = Alignment.CenterStart) {
-            if (value.isEmpty()) Text(placeholder, color = c.textSecondary, fontSize = 16.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
+            if (value.isEmpty()) Text(placeholder, color = c.textSecondary, fontSize = 15.sp)
             androidx.compose.foundation.text.BasicTextField(
                 value = value, onValueChange = onValue, singleLine = true,
-                textStyle = androidx.compose.ui.text.TextStyle(color = c.text, fontSize = 16.sp),
-                cursorBrush = androidx.compose.ui.graphics.SolidColor(Color(0xFF378EF0)),
+                textStyle = androidx.compose.ui.text.TextStyle(color = c.text, fontSize = 15.sp),
+                cursorBrush = androidx.compose.ui.graphics.SolidColor(c.accent),
                 visualTransformation = if (password && !visible) androidx.compose.ui.text.input.PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None,
                 keyboardOptions = keyboardOptions, keyboardActions = keyboardActions,
                 modifier = Modifier.fillMaxWidth().then(if (focus != null) Modifier.focusRequester(focus) else Modifier)

@@ -2,6 +2,7 @@ package io.github.artcraftandroid.pdfcraft.ui.home
 
 import io.github.artcraftandroid.pdfcraft.ui.safeTopPadding
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -54,6 +55,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -74,6 +76,7 @@ import io.github.artcraftandroid.pdfcraft.ui.LucideIcons
 import io.github.artcraftandroid.pdfcraft.ui.PdfSwitch
 import io.github.artcraftandroid.pdfcraft.ui.SheetDivider
 import io.github.artcraftandroid.pdfcraft.ui.SheetRow
+import io.github.artcraftandroid.pdfcraft.ui.ThemeChoice
 import io.github.artcraftandroid.pdfcraft.ui.pdfColors
 import io.github.artcraftandroid.pdfcraft.ui.viewer.ToolHues
 
@@ -86,23 +89,42 @@ fun FilesTab(vm: AppViewModel, onBrowse: () -> Unit) {
         return
     }
     Column(Modifier.fillMaxSize().safeTopPadding()) {
-        // a large title, as the expanded bar of the reference shows it
-        Box(Modifier.fillMaxWidth().height(128.dp), contentAlignment = Alignment.BottomStart) {
-            Text(stringResource(R.string.home_tab_files), color = c.label, fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 16.dp, bottom = 40.dp))
-        }
-        LocationRow(LucideIcons.Smartphone, stringResource(R.string.home_on_this_device)) { vm.filesShowLocal = true }
-        LocationRow(LucideIcons.Image, stringResource(R.string.home_photos)) { vm.pickPhotosToPdf() }
-        LocationRow(LucideIcons.FolderOpen, stringResource(R.string.home_look_in_other_folders), onBrowse)
+        Text(
+            stringResource(R.string.home_tab_files),
+            color = c.label,
+            fontSize = 26.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp),
+        )
+        LocationRow(LucideIcons.Smartphone, stringResource(R.string.home_on_this_device), c.accent) { vm.filesShowLocal = true }
+        LocationRow(LucideIcons.Image, stringResource(R.string.home_photos), ToolHues.create) { vm.pickPhotosToPdf() }
+        LocationRow(LucideIcons.FolderOpen, stringResource(R.string.home_look_in_other_folders), ToolHues.organize, onBrowse)
     }
 }
 
 @Composable
-private fun LocationRow(icon: ImageVector, label: String, onClick: () -> Unit) {
+private fun LocationRow(icon: ImageVector, label: String, hue: Color, onClick: () -> Unit) {
     val c = pdfColors
-    Row(Modifier.fillMaxWidth().heightIn(min = 62.dp).clickable(onClick = onClick).padding(start = 16.dp, end = 16.dp), verticalAlignment = Alignment.CenterVertically) {
-        Icon(icon, null, tint = c.icon, modifier = Modifier.size(22.dp))
-        Spacer(Modifier.width(16.dp))
-        Text(label, color = c.text, fontSize = 17.sp, modifier = Modifier.weight(1f))
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 5.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .background(c.surface)
+            .border(1.dp, c.divider.copy(alpha = 0.65f), RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            Modifier.size(44.dp).clip(RoundedCornerShape(12.dp)).background(tint(hue, c.dark)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(icon, null, tint = hue, modifier = Modifier.size(22.dp))
+        }
+        Spacer(Modifier.width(14.dp))
+        Text(label, color = c.text, fontSize = 16.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f))
+        Icon(LucideIcons.ChevronRight, null, tint = c.textSecondary, modifier = Modifier.size(20.dp))
     }
 }
 
@@ -193,37 +215,47 @@ fun ToolsTab(vm: AppViewModel) {
         )
     }
     Column(Modifier.fillMaxSize().safeTopPadding()) {
-        Text(stringResource(R.string.home_tab_tools), color = c.label, fontSize = 27.sp, lineHeight = 35.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp))
-        // text tabs with a 2 dp underline under the chosen one
-        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+        Text(stringResource(R.string.home_tab_tools), color = c.label, fontSize = 26.sp, lineHeight = 34.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 12.dp))
+        // Modern pill filter chips
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             for ((k, label) in categories) {
-                Column(Modifier.clickable(role = Role.Tab) { cat = k }.width(androidx.compose.foundation.layout.IntrinsicSize.Max)) {
-                    Text(stringResource(label), color = if (k == cat) c.label else c.textTertiary, fontSize = 17.sp, lineHeight = 25.sp, fontWeight = if (k == cat) FontWeight.SemiBold else FontWeight.Normal)
-                    Spacer(Modifier.height(14.dp))
-                    Box(Modifier.fillMaxWidth().height(2.dp).background(if (k == cat) c.label else Color.Transparent))
+                val active = k == cat
+                Box(
+                    Modifier
+                        .clip(CircleShape)
+                        .background(if (active) c.accent else c.surfaceRaised)
+                        .clickable(role = Role.Tab) { cat = k }
+                        .padding(horizontal = 16.dp, vertical = 9.dp),
+                ) {
+                    Text(stringResource(label), color = if (active) c.onAccent else c.textSecondary, fontSize = 14.sp, fontWeight = if (active) FontWeight.SemiBold else FontWeight.Medium)
                 }
             }
         }
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(14.dp))
         LazyVerticalGrid(
-            GridCells.Adaptive(140.dp), modifier = Modifier.weight(1f).padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp),
+            GridCells.Adaptive(150.dp), modifier = Modifier.weight(1f).padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             items(tools.filter { cat == "All" || cat in it.categories }.sortedBy { t -> CategoryOrder[cat]?.indexOf(t.name)?.takeIf { it >= 0 } ?: Int.MAX_VALUE }) { t ->
                 val name = stringResource(t.label)
                 Column(
-                    Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(c.surface)
-                        .border(1.dp, c.divider, RoundedCornerShape(12.dp)).clickable(onClick = t.go).padding(16.dp).semantics { contentDescription = name },
+                    Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(c.surface)
+                        .border(1.dp, c.divider.copy(alpha = 0.65f), RoundedCornerShape(16.dp)).clickable(onClick = t.go).padding(16.dp).semantics { contentDescription = name },
                 ) {
-                    Box(Modifier.size(64.dp).clip(RoundedCornerShape(5.dp)).background(tint(t.hue, c.dark)), contentAlignment = Alignment.Center) {
-                        Icon(t.icon, null, tint = t.hue, modifier = Modifier.size(32.dp))
+                    Box(
+                        Modifier.size(52.dp).clip(RoundedCornerShape(14.dp)).background(tint(t.hue, c.dark))
+                            .border(1.dp, t.hue.copy(alpha = if (c.dark) 0.25f else 0.16f), RoundedCornerShape(14.dp)),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(t.icon, null, tint = t.hue, modifier = Modifier.size(26.dp))
                     }
                     Spacer(Modifier.height(12.dp))
                     Text(name, color = c.label, fontSize = 15.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold)
-                    Text(stringResource(t.about), color = c.label, fontSize = 15.sp, lineHeight = 21.sp)
+                    Spacer(Modifier.height(4.dp))
+                    Text(stringResource(t.about), color = c.textSecondary, fontSize = 13.sp, lineHeight = 18.sp)
                 }
             }
-            item { Spacer(Modifier.height(8.dp)) }
+            item { Spacer(Modifier.height(16.dp)) }
         }
     }
 }
@@ -240,7 +272,15 @@ fun SearchTab(vm: AppViewModel) {
     // the orders results can be sorted in, by [sort]
     val sorts = listOf(R.string.home_sort_relevant, R.string.home_sort_name_az, R.string.home_sort_name_za, R.string.home_sort_oldest, R.string.home_sort_newest)
     Column(Modifier.fillMaxSize().safeTopPadding()) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp).clip(CircleShape).background(c.surfaceRaised).padding(horizontal = 14.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            Modifier.fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 10.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(c.surface)
+                .border(1.dp, c.divider, RoundedCornerShape(16.dp))
+                .padding(horizontal = 14.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Icon(LucideIcons.Search, null, tint = c.textSecondary, modifier = Modifier.size(20.dp))
             Spacer(Modifier.width(10.dp))
             BasicTextField(
@@ -356,6 +396,39 @@ fun SettingsScreen(vm: AppViewModel) {
 private fun Preferences(vm: AppViewModel) {
     val c = pdfColors
     var authorDialog by remember { mutableStateOf(false) }
+    Section(stringResource(R.string.home_section_theme))
+    Row(
+        Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 8.dp)
+            .clip(RoundedCornerShape(14.dp)).background(c.surfaceRaised).padding(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        val choices = listOf(
+            ThemeChoice.System to R.string.home_theme_system,
+            ThemeChoice.Light to R.string.home_theme_light,
+            ThemeChoice.Dark to R.string.home_theme_dark,
+        )
+        for ((choice, labelRes) in choices) {
+            val active = vm.theme == choice && !vm.eInkMode
+            Box(
+                Modifier.weight(1f).clip(RoundedCornerShape(10.dp))
+                    .background(if (active) c.accent else Color.Transparent)
+                    .clickable {
+                        if (vm.eInkMode) vm.updateEInkMode(false)
+                        vm.setThemeChoice(choice)
+                    }
+                    .padding(vertical = 10.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    stringResource(labelRes),
+                    color = if (active) c.onAccent else c.textSecondary,
+                    fontSize = 14.sp,
+                    fontWeight = if (active) FontWeight.SemiBold else FontWeight.Medium,
+                )
+            }
+        }
+    }
+    SheetDivider()
     Section(stringResource(R.string.home_section_notifications))
     Text(stringResource(R.string.home_no_notifications), color = c.textSecondary, fontSize = 14.sp, modifier = Modifier.padding(horizontal = 20.dp, vertical = 6.dp))
     SheetDivider()
@@ -428,8 +501,8 @@ private fun Preferences(vm: AppViewModel) {
     }
 }
 
-/** PdfCraft for Android's own repository: its help, its issues and its source. */
-private const val APP_REPO = "https://github.com/artcraft-android/pdfcraft-android"
+/** ArAr PDF Next's repository: help, issues and source. */
+private const val APP_REPO = "https://github.com/gudangjoker/ArArPDF-Next"
 
 @Composable
 private fun Section(title: String) {
@@ -441,15 +514,23 @@ private fun About(vm: AppViewModel) {
     val c = pdfColors
     val clipboard = LocalClipboardManager.current
     val uri = LocalUriHandler.current
-    Section(stringResource(R.string.home_section_about))
     val version = stringResource(R.string.home_version, vm.appVersion, io.github.artcraftandroid.pdfcraft.core.engineVersion())
     val copied = stringResource(R.string.home_version_copied)
-    Text(
-        version, color = c.text, fontSize = 16.sp,
-        modifier = Modifier.fillMaxWidth()
+    Row(
+        Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 14.dp)
+            .clip(RoundedCornerShape(16.dp)).background(c.surfaceRaised)
             .pointerInput(version) { detectTapGestures(onLongPress = { clipboard.setText(AnnotatedString(version)); vm.tell(copied) }) }
-            .padding(horizontal = 20.dp, vertical = 12.dp),
-    )
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Image(painterResource(R.drawable.ic_launcher_tile), null, modifier = Modifier.size(52.dp).clip(RoundedCornerShape(14.dp)))
+        Spacer(Modifier.width(14.dp))
+        Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.app_name), color = c.text, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.height(2.dp))
+            Text(version, color = c.textSecondary, fontSize = 13.sp)
+        }
+    }
     SheetDivider()
     Section(stringResource(R.string.home_section_legal))
     SheetRow(null, stringResource(R.string.home_licences), { vm.showLicences = true })

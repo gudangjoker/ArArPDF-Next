@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open_with">Buka di ArAr PDF Next</string>
+
+    <!-- Umum -->
+    <string name="common_ok">OK</string>
+    <string name="common_cancel">Batal</string>
+    <string name="common_done">Selesai</string>
+    <string name="common_save">Simpan</string>
+    <string name="common_save_copy">Simpan salinan</string>
+    <string name="common_delete">Hapus</string>
+    <string name="common_back">Kembali</string>
+    <string name="common_share">Bagikan</string>
+    <string name="common_open">Buka</string>
+    <string name="common_create">Buat</string>
+    <string name="common_clear">Bersihkan</string>
+    <string name="common_rename">Ubah nama</string>
+    <string name="common_undo">Urungkan</string>
+    <string name="common_redo">Ulangi</string>
+    <string name="common_play">Putar</string>
+    <string name="common_pause">Jeda</string>
+    <string name="common_sign">Tanda tangani</string>
+    <string name="common_post">Kirim</string>
+    <string name="common_more_options">Opsi lainnya</string>
+    <string name="common_password">Kata sandi</string>
+    <string name="common_your_name">Nama Anda</string>
+    <string name="common_file_name">Nama file</string>
+    <string name="common_today">Hari ini</string>
+    <string name="common_yesterday">Kemarin</string>
+
+    <!-- Nama alat -->
+    <string name="common_tool_edit_pdf">Edit PDF</string>
+    <string name="common_tool_read_aloud">Baca lantang</string>
+    <string name="common_tool_combine">Gabung file</string>
+    <string name="common_tool_set_password">Atur kata sandi</string>
+    <string name="common_tool_organize">Atur halaman</string>
+    <string name="common_tool_create_pdf">Buat PDF</string>
+    <string name="common_tool_compress">Kompres PDF</string>
+    <string name="common_tool_export">Ekspor PDF</string>
+    <string name="common_tool_crop">Potong halaman</string>
+    <string name="common_tool_fill_sign">Isi &amp; Tanda Tangan</string>
+    <string name="common_tool_scan">Pindai</string>
+    <string name="common_tool_more_tools">Alat lainnya</string>
+    <string name="common_tool_recognize_text">Kenali teks (OCR)</string>
+    <string name="common_tool_comment">Komentar</string>
+    <string name="common_tool_highlight">Sorot</string>
+    <string name="common_tool_underline">Garis bawah</string>
+    <string name="common_tool_draw">Gambar</string>
+    <string name="common_tool_sign_digital_id">Tanda tangan ID digital</string>
+
+    <!-- Pesan umum -->
+    <string name="common_file_unreadable">File tidak dapat dibaca.</string>
+    <string name="common_wrong_password">Kata sandi salah.</string>
+
+    <!-- Navigasi bawah -->
+    <string name="home_tab_home">Beranda</string>
+    <string name="home_tab_files">File</string>
+    <string name="home_tab_tools">Alat</string>
+    <string name="home_tab_search">Cari</string>
+
+    <!-- Beranda -->
+    <string name="home_settings">Pengaturan</string>
+    <string name="home_welcome">Selamat datang</string>
+    <string name="home_welcome_back">Selamat datang kembali</string>
+    <string name="home_start_with_tool">Alat cepat</string>
+    <string name="home_list_recent">Terbaru</string>
+    <string name="home_list_starred">Berbintang</string>
+    <string name="home_list_on_device">Di perangkat</string>
+    <string name="home_list_view">Tampilan daftar</string>
+    <string name="home_grid_view">Tampilan kisi</string>
+    <string name="home_clear_recent">Bersihkan terbaru</string>
+    <string name="home_sort_by_name">Urutkan menurut nama</string>
+    <string name="home_sort_by_date">Urutkan menurut tanggal</string>
+    <string name="home_other_files">File lain di ponsel ini</string>
+    <string name="home_open_file">Buka file</string>
+    <string name="home_new_scan">Pindai baru</string>
+
+    <!-- Beranda: daftar kosong -->
+    <string name="home_no_recent_title">Belum ada file terbaru</string>
+    <string name="home_no_recent_body">File PDF yang Anda buka akan muncul di sini.</string>
+    <string name="home_no_starred_title">Belum ada file berbintang</string>
+    <string name="home_no_starred_body">Beri bintang pada file dari menunya agar mudah ditemukan di sini.</string>
+    <string name="home_device_files_title">File di perangkat Anda</string>
+    <string name="home_device_files_body">Pilih folder untuk menampilkan daftar PDF, seperti Dokumen atau folder di dalam Unduhan. File yang dibuka dari mana saja tetap muncul di Terbaru.</string>
+    <string name="home_device_files_body_long">Pilih folder untuk menampilkan daftar PDF, seperti Dokumen atau folder di dalam Unduhan (Android tidak mengizinkan aplikasi membaca seluruh folder Unduhan). ArAr PDF Next hanya melihat folder yang Anda pilih.</string>
+    <string name="home_no_pdfs_title">Tidak ada PDF di folder Anda</string>
+    <string name="home_no_pdfs_body">File PDF di dalam folder yang Anda tambahkan akan muncul di sini.</string>
+    <string name="home_add_folder">Tambah folder</string>
+
+    <!-- Beranda: baris file -->
+    <string name="home_just_now">Baru saja</string>
+    <string name="home_starred_description">Berbintang</string>
+    <string name="home_stored_on">Disimpan di %1$s</string>
+    <string name="home_more_options_for">Opsi lainnya untuk %1$s</string>
+
+    <!-- Beranda: pemilihan banyak file -->
+    <string name="home_clear_selection">Batalkan pilihan</string>
+    <plurals name="home_files_selected">
+        <item quantity="other">%d file dipilih</item>
+    </plurals>
+    <string name="home_remove_from_recent">Hapus dari terbaru</string>
+    <plurals name="home_delete_files_title">
+        <item quantity="other">Hapus %d file?</item>
+    </plurals>
+    <string name="home_delete_files_body">File akan dihapus dari perangkat ini.</string>
+    <string name="home_clear_recent_title">Bersihkan daftar terbaru?</string>
+    <string name="home_clear_recent_body">Daftar file terbaru akan dikosongkan. File aslinya tetap tersimpan aman.</string>
+
+    <!-- Menu file -->
+    <string name="home_export_as">Ekspor sebagai...</string>
+    <string name="home_print">Cetak</string>
+    <string name="home_open_with">Buka dengan</string>
+    <string name="home_star">Beri bintang</string>
+    <string name="home_unstar">Hapus bintang</string>
+    <string name="home_duplicate">Duplikat</string>
+    <string name="home_enter_name">Masukkan nama</string>
+    <string name="home_delete_file_title">Hapus file?</string>
+    <string name="home_delete_file_body">Yakin ingin menghapus \'%1$s\' secara permanen?</string>
+
+    <!-- Tab File -->
+    <string name="home_on_this_device">Di perangkat ini</string>
+    <string name="home_photos">Foto ke PDF</string>
+    <string name="home_look_in_other_folders">Telusuri folder lain</string>
+    <string name="home_refresh">Muat ulang</string>
+    <string name="home_stop_listing">Berhenti tampilkan %1$s</string>
+    <string name="home_looking_for_pdfs">Mencari file PDF…</string>
+    <string name="home_internal_storage">PENYIMPANAN INTERNAL</string>
+
+    <!-- Tab Alat -->
+    <string name="home_category_all">Semua</string>
+    <string name="home_category_read">Baca</string>
+    <string name="home_category_create">Buat</string>
+    <string name="home_category_edit">Edit</string>
+    <string name="home_category_convert">Konversi</string>
+
+    <string name="home_tool_add_comment">Tambah komentar</string>
+    <string name="home_about_fill_sign">Isi formulir dan tanda tangani</string>
+    <string name="home_about_comment">Komentar, sorot, dan coretan</string>
+    <string name="home_about_read_aloud">Dengarkan isi dokumen PDF</string>
+    <string name="home_about_create">Ubah gambar dan teks menjadi PDF</string>
+    <string name="home_about_scan">Pindai dokumen kertas dengan kamera</string>
+    <string name="home_about_combine">Gabungkan beberapa file jadi satu PDF</string>
+    <string name="home_about_organize">Urutkan, putar, hapus, dan sisipkan halaman</string>
+    <string name="home_about_crop">Potong margin atau ubah ukuran halaman</string>
+    <string name="home_about_edit">Ubah teks dan gambar dalam PDF</string>
+    <string name="home_about_compress">Perkecil ukuran file PDF</string>
+    <string name="home_about_export">Simpan PDF ke dokumen, spreadsheet, slide, atau gambar</string>
+    <string name="home_about_protect">Lindungi PDF dengan kata sandi</string>
+
+    <!-- Tab Cari -->
+    <string name="home_search_your_files">Cari file Anda</string>
+    <string name="home_search_empty_body">Temukan file PDF di ponsel ini berdasarkan nama.</string>
+    <string name="home_recent_searches">Pencarian terbaru</string>
+    <string name="home_remove_search">Hapus %1$s</string>
+    <plurals name="home_search_results">
+        <item quantity="other">%d hasil di perangkat ini</item>
+    </plurals>
+    <string name="home_sort_relevant">Paling relevan</string>
+    <string name="home_sort_name_az">Nama A→Z</string>
+    <string name="home_sort_name_za">Nama Z→A</string>
+    <string name="home_sort_oldest">Paling lama diubah</string>
+    <string name="home_sort_newest">Terbaru diubah</string>
+    <string name="home_no_results">Tidak ada hasil</string>
+    <string name="home_no_results_body">Periksa ejaan atau coba kata kunci yang lebih singkat.</string>
+
+    <!-- Pengaturan -->
+    <string name="home_about_app">Tentang ArAr PDF Next</string>
+    <string name="home_preferences">Preferensi</string>
+    <string name="home_help_support">Bantuan &amp; Dukungan</string>
+    <string name="home_help">Bantuan</string>
+    <string name="home_report_problem">Laporkan masalah atau usulkan fitur</string>
+    <string name="home_leaving_title">Meninggalkan ArAr PDF Next</string>
+    <string name="home_continue">Lanjutkan</string>
+    <string name="home_leaving_body">Ini akan membuka halaman web di browser Anda.</string>
+
+    <!-- Tema & Redesign -->
+    <string name="home_section_theme">Tampilan</string>
+    <string name="home_theme_system">Sistem</string>
+    <string name="home_theme_light">Terang</string>
+    <string name="home_theme_dark">Gelap</string>
+    <string name="home_toggle_theme">Ubah mode terang atau gelap</string>
+    <string name="home_hero_subtitle">Ruang kerja PDF cepat, privat, dan offline</string>
+
+    <!-- Pengaturan: Preferensi -->
+    <string name="home_section_notifications">Notifikasi</string>
+    <string name="home_no_notifications">ArAr PDF Next tidak mengirim notifikasi.</string>
+    <string name="home_section_suggestions">Saran otomatis</string>
+    <string name="home_offer_suggestions">Tawarkan kata yang pernah dipakai saat mengisi formulir</string>
+    <string name="home_clear_suggestions">Bersihkan saran</string>
+    <string name="home_author_title">Nama Anda pada komentar</string>
+    <string name="home_author_hint">Ketuk untuk mengisi nama yang tampil pada komentar</string>
+    <string name="home_section_screen">Pengaturan layar</string>
+    <string name="home_keep_screen_on">Biarkan layar tetap menyala</string>
+    <string name="home_keep_screen_on_body">Menjaga layar tetap menyala saat membaca, hingga 30 menit tanpa sentuhan.</string>
+    <string name="home_eink_mode">Mode E-ink</string>
+    <string name="home_eink_mode_body">Untuk layar e-paper: hitam putih tanpa latar abu-abu, tanpa animasi, dan gulir berhenti tepat saat jari diangkat.</string>
+    <string name="home_section_keyboard">Keyboard</string>
+    <string name="home_keyboard_shortcuts">Pintasan keyboard</string>
+    <string name="home_keyboard_shortcuts_body">Saat keyboard terhubung: N atau Page Down untuk halaman berikutnya, P atau Page Up untuk sebelumnya, tombol panah untuk menggulir, Ctrl+P untuk mencetak, Ctrl +/− untuk zoom.</string>
+    <string name="home_section_extra">Fitur Tambahan</string>
+    <string name="home_extra_body">Pengaturan opsional untuk tampilan dan perilaku ArAr PDF Next.</string>
+    <string name="home_status_bar_in_documents">Tampilkan bilah status di dokumen</string>
+    <string name="home_status_bar_in_documents_body">Bilah status muncul bersama toolbar. Saat disembunyikan, halaman memakai seluruh layar.</string>
+    <string name="home_search_count">Tampilkan jumlah hasil pencarian</string>
+    <string name="home_search_count_body">Pencarian dalam dokumen menampilkan posisi dan total hasil, misalnya 3 dari 12.</string>
+    <string name="home_two_pages_on_phones">Tampilan dua halaman di ponsel</string>
+    <string name="home_two_pages_on_phones_body">Menambahkan opsi Dua halaman di ponsel, nyaman untuk mode lanskap.</string>
+    <string name="home_properties_in_menu">Properti dokumen di menu</string>
+    <string name="home_properties_in_menu_body">Menampilkan Properti dokumen di menu ⋮: nama, ukuran, lokasi, penulis, versi PDF, dan keamanan.</string>
+    <string name="home_scan_folder">Folder penyimpanan pindaian</string>
+    <string name="home_scan_folder_body">Hasil pindaian baru disimpan di %1$s.</string>
+    <string name="home_scan_folder_downloads">Unduhan</string>
+    <string name="home_scan_folder_reset">Simpan pindaian di Unduhan</string>
+
+    <!-- Pengaturan: Tentang -->
+    <string name="home_section_about">Tentang</string>
+    <string name="home_version">Versi %1$s (engine %2$s)</string>
+    <string name="home_version_copied">Versi disalin</string>
+    <string name="home_section_legal">Legal</string>
+    <string name="home_licences">Lisensi sumber terbuka</string>
+    <string name="home_source_code">Kode sumber</string>
+    <string name="home_engine">Engine PdfCraft</string>
+    <string name="home_legal_notice">ArAr PDF Next ditenagai oleh engine Rust sumber terbuka PdfCraft (MIT OR Apache-2.0). Tidak berafiliasi dengan Adobe; Acrobat adalah merek dagang Adobe Inc.</string>
+
+    <!-- Layar Alat: Kompres, Kata Sandi, Ekspor, Buat -->
+    <string name="tools_compress_action">Kompres</string>
+    <string name="tools_compression_level">Tingkat kompresi:</string>
+    <string name="tools_compress_high">Kompresi tinggi</string>
+    <string name="tools_compress_high_desc">Ukuran terkecil, gambar lebih lembut</string>
+    <string name="tools_compress_medium">Kompresi sedang</string>
+    <string name="tools_compress_medium_desc">Seimbang antara ukuran dan kualitas</string>
+    <string name="tools_compress_low">Kompresi rendah</string>
+    <string name="tools_compress_low_desc">File lebih besar, gambar paling tajam</string>
+
+    <string name="tools_about_passwords">Tentang kata sandi</string>
+    <string name="tools_protect_intro">Salinan file yang dilindungi akan disimpan.</string>
+    <string name="tools_new_password">Kata sandi baru *</string>
+    <string name="tools_repeat_password">Ulangi kata sandi *</string>
+    <string name="tools_password_rule">Gunakan 6 hingga 128 karakter: huruf, angka, dan simbol, tanpa spasi.</string>
+    <string name="tools_password_mismatch">Kata sandi tidak cocok.</string>
+    <string name="tools_about_passwords_body">Salinan dienkripsi dengan AES-256. Simpan kata sandi dengan aman karena tidak dapat dipulihkan.</string>
+
+    <string name="tools_export_action">Ekspor</string>
+    <string name="tools_export_document">Dokumen</string>
+    <string name="tools_export_image">Gambar</string>
+    <string name="tools_export_not_allowed">Keamanan dokumen ini tidak mengizinkan ekspor teks. Ekspor halaman sebagai gambar sebagai gantinya.</string>
+
+    <string name="tools_create_title">Pilih file untuk membuat PDF</string>
+    <string name="tools_browse_files">Telusuri file</string>
+    <string name="tools_or_make_new">Atau buat yang baru</string>
+
+    <!-- Dialog & Pesan Aplikasi -->
+    <string name="root_enter_password">Masukkan kata sandi</string>
+    <string name="root_password_body">Masukkan kata sandi untuk membuka %1$s.</string>
+    <string name="root_skip">Lewati</string>
+    <string name="root_author_prompt_body">Nama Anda akan ditampilkan pada komentar yang Anda buat.</string>
+    <string name="root_read_only_title">File hanya-baca</string>
+    <string name="root_read_only_body">%1$s tidak dapat diubah langsung. Simpan salinan dengan perubahan Anda?</string>
+    <string name="root_discard">Buang</string>
+    <string name="root_open_link_title">Buka tautan?</string>
+    <string name="root_open_link_body">Buka %1$s di browser Anda?</string>
+    <string name="root_delete_bookmarks_title">Hapus semua penanda?</string>
+    <string name="root_delete_bookmarks_body">Semua penanda yang Anda tambahkan pada dokumen ini akan dihapus.</string>
+    <string name="root_delete_all">Hapus semua</string>
+
+    <string name="voice_mic_rationale">ArAr PDF Next memerlukan izin mikrofon untuk merekam komentar suara. Anda dapat mengaktifkannya di pengaturan aplikasi.</string>
+    <string name="sign_remove_id_message">ID digital %1$s akan dihapus dari ArAr PDF Next. Dokumen yang sudah ditandatangani tetap mempertahankan tanda tangannya.</string>
+    <string name="sign_password_note">ArAr PDF Next tidak menyimpan kata sandi dan tidak dapat memulihkannya: Anda mengetiknya setiap kali menandatangani.</string>
+    <string name="msg_engine_not_started">ArAr PDF Next gagal dimulai.</string>
+    <string name="msg_opened_own_copy">Membuka salinan ArAr PDF Next. Untuk mengubah file asli, buka kembali dari aplikasi asalnya.</string>
+    <string name="msg_file_access_lost">ArAr PDF Next tidak dapat lagi membuka file ini. Buka ulang dari aplikasi asalnya atau melalui Buka file.</string>
+    <string name="msg_id_unusable">ArAr PDF Next tidak dapat menggunakan file ini sebagai ID digital: %1$s</string>
+    <string name="msg_button_submit">Tombol ini mengirim formulir secara online, yang tidak dilakukan oleh ArAr PDF Next.</string>
+    <plurals name="msg_images_saved">
+        <item quantity="other">%1$d gambar disimpan ke Pictures/ArAr PDF Next</item>
+    </plurals>
+    <string name="msg_delete_not_allowed">%1$s tidak dapat dihapus dari ArAr PDF Next: aplikasi asalnya tidak mengizinkan. Hapus dari sana atau hapus dari Terbaru.</string>
+    <string name="ui_close_sheet">Tutup panel</string>
+    <string name="ui_show_password">Tampilkan kata sandi</string>
+    <string name="ui_hide_password">Sembunyikan kata sandi</string>
+</resources>

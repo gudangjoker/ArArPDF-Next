@@ -47,6 +47,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -73,6 +74,7 @@ import io.github.artcraftandroid.pdfcraft.ui.PdfBadge
 import io.github.artcraftandroid.pdfcraft.ui.PdfSheet
 import io.github.artcraftandroid.pdfcraft.ui.SheetDivider
 import io.github.artcraftandroid.pdfcraft.ui.SheetRow
+import io.github.artcraftandroid.pdfcraft.ui.ThemeChoice
 import io.github.artcraftandroid.pdfcraft.ui.pdfColors
 import io.github.artcraftandroid.pdfcraft.ui.viewer.ToolHues
 import io.github.artcraftandroid.pdfcraft.ui.viewer.formatSize
@@ -116,12 +118,12 @@ fun HomeRoot(vm: AppViewModel, onBrowse: () -> Unit) {
     }
 }
 
-/** The bottom bar: Home, Files, Tools, Search; the chosen one in the accent colour. */
+/** Modern Material 3 bottom navigation bar with active indicator pill. */
 @Composable
 private fun BottomNav(selected: HomeTab, onSelect: (HomeTab) -> Unit) {
     val c = pdfColors
-    Column(Modifier.fillMaxWidth().background(c.home).drawBehind { drawLine(c.divider, Offset(0f, 0f), Offset(size.width, 0f), 1.dp.toPx()) }) {
-        Row(Modifier.fillMaxWidth().height(61.dp), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+    Column(Modifier.fillMaxWidth().background(c.surface).drawBehind { drawLine(c.divider, Offset(0f, 0f), Offset(size.width, 0f), 1.dp.toPx()) }) {
+        Row(Modifier.fillMaxWidth().height(68.dp).padding(horizontal = 8.dp), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
             for (t in HomeTab.entries) {
                 val icon = when (t) {
                     HomeTab.Home -> LucideIcons.House
@@ -129,16 +131,26 @@ private fun BottomNav(selected: HomeTab, onSelect: (HomeTab) -> Unit) {
                     HomeTab.Tools -> LucideIcons.LayoutGrid
                     HomeTab.Search -> LucideIcons.Search
                 }
-                val tint = if (t == selected) c.toolAccent else c.icon
+                val isSelected = t == selected
+                val tint = if (isSelected) c.accent else c.textSecondary
                 val label = stringResource(t.label)
                 Column(
-                    Modifier.weight(1f).height(61.dp).clickable(role = Role.Tab) { onSelect(t) }.semantics { contentDescription = label },
+                    Modifier.weight(1f).height(64.dp).clickable(role = Role.Tab) { onSelect(t) }.semantics { contentDescription = label },
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                 ) {
-                    Icon(icon, null, tint = tint, modifier = Modifier.size(22.dp))
-                    Spacer(Modifier.height(5.dp))
-                    Text(label, color = tint, fontSize = 11.sp)
+                    Box(
+                        Modifier
+                            .width(56.dp)
+                            .height(30.dp)
+                            .clip(CircleShape)
+                            .background(if (isSelected) c.accent.copy(alpha = if (c.dark) 0.18f else 0.12f) else Color.Transparent),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(icon, null, tint = tint, modifier = Modifier.size(21.dp))
+                    }
+                    Spacer(Modifier.height(3.dp))
+                    Text(label, color = tint, fontSize = 11.sp, fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium)
                 }
             }
         }
@@ -146,7 +158,7 @@ private fun BottomNav(selected: HomeTab, onSelect: (HomeTab) -> Unit) {
     }
 }
 
-/** Home: the app's name and Settings, a welcome, the tools carousel, then Recent, Starred and On device. */
+/** Home: branded ArAr PDF Next top bar, hero quick actions, tools strip, and document lists. */
 @Composable
 private fun HomeTabScreen(vm: AppViewModel, onBrowse: () -> Unit) {
     val c = pdfColors
@@ -167,33 +179,121 @@ private fun HomeTabScreen(vm: AppViewModel, onBrowse: () -> Unit) {
         ) { Text(stringResource(R.string.home_delete_files_body), color = c.text, fontSize = 14.sp) }
     }
     val settingsLabel = stringResource(R.string.home_settings)
+    val toggleThemeLabel = stringResource(R.string.home_toggle_theme)
     val toolsLabel = stringResource(R.string.home_tab_tools)
     Box(Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize().safeTopPadding()) {
             if (vm.selectedFiles.isNotEmpty()) SelectionBar(vm, recent = tab == 0, onDelete = { confirmDeleteSelected = true }) else
-            Row(Modifier.fillMaxWidth().height(56.dp).padding(start = 16.dp, end = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                Image(painterResource(R.drawable.ic_launcher_tile), null, modifier = Modifier.size(28.dp).clip(RoundedCornerShape(6.dp)))
+            Row(Modifier.fillMaxWidth().height(60.dp).padding(start = 16.dp, end = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                Image(painterResource(R.drawable.ic_launcher_tile), null, modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp)))
                 Spacer(Modifier.width(10.dp))
-                Text(stringResource(R.string.app_name), color = c.text, fontSize = 20.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
+                Text(stringResource(R.string.app_name), color = c.text, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                if (!vm.eInkMode) {
+                    Box(
+                        Modifier.size(40.dp).clip(CircleShape).background(c.surfaceRaised)
+                            .clickable { vm.setThemeChoice(if (c.dark) ThemeChoice.Light else ThemeChoice.Dark) }
+                            .semantics { contentDescription = toggleThemeLabel },
+                        contentAlignment = Alignment.Center,
+                    ) { Icon(if (c.dark) LucideIcons.Sun else LucideIcons.Moon, null, tint = c.icon, modifier = Modifier.size(20.dp)) }
+                    Spacer(Modifier.width(8.dp))
+                }
                 Box(
                     Modifier.size(40.dp).clip(CircleShape).background(c.surfaceRaised).clickable { vm.settingsOpen = true }.semantics { contentDescription = settingsLabel },
                     contentAlignment = Alignment.Center,
-                ) { Icon(LucideIcons.UserRound, null, tint = c.icon, modifier = Modifier.size(22.dp)) }
+                ) { Icon(LucideIcons.Settings, null, tint = c.icon, modifier = Modifier.size(20.dp)) }
             }
             LazyColumn(Modifier.weight(1f)) {
                 item {
-                    Text(stringResource(if (vm.recentList.isEmpty()) R.string.home_welcome else R.string.home_welcome_back), color = c.text, fontSize = 24.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(start = 16.dp, top = 8.dp, bottom = 16.dp))
-                    Text(stringResource(R.string.home_start_with_tool), color = c.text, fontSize = 15.sp, lineHeight = 22.sp, fontWeight = FontWeight.Medium, modifier = Modifier.padding(start = 16.dp, bottom = 8.dp))
-                    ToolsCarousel(vm, onBrowse)
-                    Spacer(Modifier.height(16.dp))
-                    Row(Modifier.fillMaxWidth().padding(start = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                        listOf(R.string.home_list_recent, R.string.home_list_starred, R.string.home_list_on_device).forEachIndexed { i, label ->
-                            Column(Modifier.clickable(role = Role.Tab) { tab = i }.padding(horizontal = 10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text(stringResource(label), color = if (tab == i) c.text else c.textSecondary, fontSize = 15.sp, fontWeight = if (tab == i) FontWeight.SemiBold else FontWeight.Normal, modifier = Modifier.padding(vertical = 10.dp))
-                                Box(Modifier.width(48.dp).height(2.dp).background(if (tab == i) c.text else Color.Transparent))
+                    // Branded Hero Quick-Action Card
+                    val heroBrush = if (vm.eInkMode) {
+                        Brush.linearGradient(listOf(c.surface, c.surface))
+                    } else {
+                        Brush.linearGradient(listOf(Color(0xFF0088FF), Color(0xFF0052E6), Color(0xFF002BC4)))
+                    }
+                    val heroText = if (vm.eInkMode) c.text else Color.White
+                    Column(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 6.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(heroBrush)
+                            .then(if (vm.eInkMode) Modifier.border(1.dp, c.divider, RoundedCornerShape(20.dp)) else Modifier)
+                            .padding(18.dp),
+                    ) {
+                        Text(
+                            stringResource(if (vm.recentList.isEmpty()) R.string.home_welcome else R.string.home_welcome_back),
+                            color = heroText,
+                            fontSize = 21.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            stringResource(R.string.home_hero_subtitle),
+                            color = heroText.copy(alpha = if (vm.eInkMode) 0.8f else 0.86f),
+                            fontSize = 13.sp,
+                        )
+                        Spacer(Modifier.height(14.dp))
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Row(
+                                Modifier
+                                    .weight(1f)
+                                    .height(44.dp)
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .background(if (vm.eInkMode) c.text else Color.White)
+                                    .clickable(onClick = onBrowse)
+                                    .padding(horizontal = 12.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center,
+                            ) {
+                                Icon(LucideIcons.FolderOpen, null, tint = if (vm.eInkMode) Color.White else Color(0xFF0052E6), modifier = Modifier.size(18.dp))
+                                Spacer(Modifier.width(8.dp))
+                                Text(stringResource(R.string.home_open_file), color = if (vm.eInkMode) Color.White else Color(0xFF0052E6), fontSize = 14.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
+                            }
+                            Row(
+                                Modifier
+                                    .weight(1f)
+                                    .height(44.dp)
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .background(if (vm.eInkMode) c.surfaceRaised else Color.White.copy(alpha = 0.18f))
+                                    .border(1.dp, if (vm.eInkMode) c.divider else Color.White.copy(alpha = 0.28f), RoundedCornerShape(12.dp))
+                                    .clickable { vm.startScan() }
+                                    .padding(horizontal = 12.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center,
+                            ) {
+                                Icon(LucideIcons.Camera, null, tint = heroText, modifier = Modifier.size(18.dp))
+                                Spacer(Modifier.width(8.dp))
+                                Text(stringResource(R.string.home_new_scan), color = heroText, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
                             }
                         }
-                        Spacer(Modifier.weight(1f))
+                    }
+
+                    Spacer(Modifier.height(14.dp))
+                    Text(stringResource(R.string.home_start_with_tool), color = c.text, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(start = 16.dp, bottom = 6.dp))
+                    ToolsCarousel(vm, onBrowse)
+                    Spacer(Modifier.height(14.dp))
+
+                    // Modern Segmented Filter Pills
+                    Row(Modifier.fillMaxWidth().padding(start = 16.dp, end = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Row(Modifier.weight(1f).horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            listOf(R.string.home_list_recent, R.string.home_list_starred, R.string.home_list_on_device).forEachIndexed { i, label ->
+                                val active = tab == i
+                                Box(
+                                    Modifier
+                                        .clip(CircleShape)
+                                        .background(if (active) c.accent else c.surfaceRaised)
+                                        .clickable(role = Role.Tab) { tab = i }
+                                        .padding(horizontal = 14.dp, vertical = 8.dp),
+                                ) {
+                                    Text(
+                                        stringResource(label),
+                                        color = if (active) c.onAccent else c.textSecondary,
+                                        fontSize = 13.sp,
+                                        fontWeight = if (active) FontWeight.SemiBold else FontWeight.Medium,
+                                    )
+                                }
+                            }
+                        }
                         Box {
                             BarIcon(LucideIcons.EllipsisVertical, stringResource(R.string.common_more_options), { menu = true })
                             DropdownMenu(expanded = menu, onDismissRequest = { menu = false }, containerColor = c.surface) {
@@ -206,7 +306,7 @@ private fun HomeTabScreen(vm: AppViewModel, onBrowse: () -> Unit) {
                             }
                         }
                     }
-                    SheetDivider(inset = 0.dp)
+                    Spacer(Modifier.height(8.dp))
                 }
                 val rows = when (tab) {
                     0 -> vm.recentRows()
@@ -224,7 +324,7 @@ private fun HomeTabScreen(vm: AppViewModel, onBrowse: () -> Unit) {
                     }
                 } else if (vm.gridView) {
                     items(rows.chunked(2)) { pair ->
-                        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             pair.forEach { r -> FileGridCell(vm, r, Modifier.weight(1f), recent = tab == 0) }
                             if (pair.size == 1) Spacer(Modifier.weight(1f))
                         }
@@ -244,7 +344,7 @@ private fun HomeTabScreen(vm: AppViewModel, onBrowse: () -> Unit) {
             onClick = { fabMenu = true },
             containerColor = c.button,
             contentColor = Color.White,
-            shape = CircleShape,
+            shape = RoundedCornerShape(16.dp),
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp).semantics { contentDescription = toolsLabel },
         ) { Icon(LucideIcons.Plus, null, modifier = Modifier.size(26.dp)) }
     }
@@ -290,12 +390,15 @@ private fun ToolsCarousel(vm: AppViewModel, onBrowse: () -> Unit) {
 @Composable
 private fun CarouselTile(icon: ImageVector, label: String, hue: Color, onClick: () -> Unit) {
     val c = pdfColors
-    // 64 dp tiles 16 dp apart, the tool's hue faint behind its icon, an 11 sp name under it
-    Column(Modifier.width(64.dp).clickable(role = Role.Button, onClick = onClick).padding(vertical = 8.dp).semantics { contentDescription = label }, horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(Modifier.size(64.dp).clip(RoundedCornerShape(5.dp)).background(tint(hue, c.dark)), contentAlignment = Alignment.Center) {
-            Icon(icon, null, tint = hue, modifier = Modifier.size(32.dp))
+    Column(Modifier.width(72.dp).clickable(role = Role.Button, onClick = onClick).padding(vertical = 6.dp).semantics { contentDescription = label }, horizontalAlignment = Alignment.CenterHorizontally) {
+        Box(
+            Modifier.size(58.dp).clip(RoundedCornerShape(16.dp)).background(tint(hue, c.dark))
+                .border(1.dp, hue.copy(alpha = if (c.dark) 0.25f else 0.16f), RoundedCornerShape(16.dp)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(icon, null, tint = hue, modifier = Modifier.size(26.dp))
         }
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(6.dp))
         io.github.artcraftandroid.pdfcraft.ui.WordWrapLabel(label, c.text, size = 11.sp, lineHeight = 14.sp)
     }
 }
@@ -355,36 +458,38 @@ fun FileListRow(vm: AppViewModel, r: FileRow, recent: Boolean = false) {
     val c = pdfColors
     val selecting = vm.selectedFiles.isNotEmpty()
     val ticked = r.key in vm.selectedFiles
-    // a long press ticks the file (several can then be shared, combined or deleted together)
+    // Elevated document card with rounded corners and subtle border
     Row(
         Modifier.fillMaxWidth()
-            .background(if (ticked) c.toolAccent.copy(alpha = 0.12f) else Color.Transparent)
+            .padding(horizontal = 16.dp, vertical = 4.dp)
+            .clip(RoundedCornerShape(14.dp))
+            .background(if (ticked) c.accent.copy(alpha = 0.14f) else c.surface)
+            .border(1.dp, if (ticked) c.accent else c.divider.copy(alpha = 0.65f), RoundedCornerShape(14.dp))
             .combinedClickable(onClick = { if (selecting) vm.toggleSelected(r) else r.open() }, onLongClick = { vm.toggleSelected(r) })
-            .padding(start = 12.dp, end = 4.dp, top = 12.dp, bottom = 12.dp),
+            .padding(start = 12.dp, end = 4.dp, top = 10.dp, bottom = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.width(48.dp), contentAlignment = Alignment.Center) { FileThumb(vm, r.thumbPath, 36, 42) }
+        Box(Modifier.width(46.dp), contentAlignment = Alignment.Center) { FileThumb(vm, r.thumbPath, 38, 46) }
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(r.name.removeSuffix(".pdf").removeSuffix(".PDF"), color = c.text, fontSize = 17.sp, fontWeight = FontWeight.Medium, maxLines = 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
+                Text(r.name.removeSuffix(".pdf").removeSuffix(".PDF"), color = c.text, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, maxLines = 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
                 if (r.starred) {
                     Spacer(Modifier.width(6.dp))
                     Icon(LucideIcons.Star, stringResource(R.string.home_starred_description), tint = Color(0xFFF5B800), modifier = Modifier.size(14.dp))
                 }
             }
-            Spacer(Modifier.height(2.dp))
+            Spacer(Modifier.height(3.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                // where it is, then type, date and size: "PDF  •  Yesterday  •  2.3 MB"
-                Icon(LucideIcons.Smartphone, stringResource(R.string.home_stored_on, r.location), tint = c.textTertiary, modifier = Modifier.size(14.dp))
-                Spacer(Modifier.width(6.dp))
-                Text(listOfNotNull("PDF", whenLabel(r.date), r.size.takeIf { it > 0 }?.let { formatSize(it) }).joinToString("  •  "), color = c.textTertiary, fontSize = 13.sp, fontWeight = FontWeight.Medium, maxLines = 1)
+                Icon(LucideIcons.Smartphone, stringResource(R.string.home_stored_on, r.location), tint = c.textTertiary, modifier = Modifier.size(13.dp))
+                Spacer(Modifier.width(5.dp))
+                Text(listOfNotNull("PDF", whenLabel(r.date), r.size.takeIf { it > 0 }?.let { formatSize(it) }).joinToString("  •  "), color = c.textTertiary, fontSize = 12.sp, fontWeight = FontWeight.Medium, maxLines = 1)
             }
         }
         if (selecting) {
-            Box(Modifier.size(48.dp), contentAlignment = Alignment.Center) { SelectBox(ticked) }
+            Box(Modifier.size(44.dp), contentAlignment = Alignment.Center) { SelectBox(ticked) }
         } else {
-            BarIcon(LucideIcons.EllipsisVertical, stringResource(R.string.home_more_options_for, r.name), { vm.fileSheet = r to recent })
+            BarIcon(LucideIcons.EllipsisVertical, stringResource(R.string.home_more_options_for, r.name), { vm.fileSheet = r to recent }, size = 42.dp, iconSize = 20.dp)
         }
     }
 }
@@ -424,14 +529,22 @@ private fun SelectionBar(vm: AppViewModel, recent: Boolean, onDelete: () -> Unit
 @Composable
 private fun FileGridCell(vm: AppViewModel, r: FileRow, modifier: Modifier, recent: Boolean) {
     val c = pdfColors
-    Column(modifier.clickable(onClick = r.open).padding(vertical = 8.dp)) {
-        Box(Modifier.fillMaxWidth().heightIn(min = 160.dp), contentAlignment = Alignment.Center) { FileThumb(vm, r.thumbPath, 120, 156) }
+    Column(
+        modifier
+            .clip(RoundedCornerShape(14.dp))
+            .background(c.surface)
+            .border(1.dp, c.divider.copy(alpha = 0.65f), RoundedCornerShape(14.dp))
+            .clickable(onClick = r.open)
+            .padding(10.dp),
+    ) {
+        Box(Modifier.fillMaxWidth().heightIn(min = 148.dp), contentAlignment = Alignment.Center) { FileThumb(vm, r.thumbPath, 112, 146) }
+        Spacer(Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f).padding(start = 4.dp)) {
-                Text(r.name.removeSuffix(".pdf"), color = c.text, fontSize = 14.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                Text(whenLabel(r.date), color = c.textSecondary, fontSize = 12.sp)
+            Column(Modifier.weight(1f).padding(start = 2.dp)) {
+                Text(r.name.removeSuffix(".pdf").removeSuffix(".PDF"), color = c.text, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(whenLabel(r.date), color = c.textSecondary, fontSize = 11.sp)
             }
-            BarIcon(LucideIcons.EllipsisVertical, stringResource(R.string.home_more_options_for, r.name), { vm.fileSheet = r to recent }, size = 40.dp)
+            BarIcon(LucideIcons.EllipsisVertical, stringResource(R.string.home_more_options_for, r.name), { vm.fileSheet = r to recent }, size = 34.dp, iconSize = 18.dp)
         }
     }
 }

@@ -10,8 +10,8 @@
   few, many). A string left out shows in English.
 -->
 <resources>
-    <string name="app_name" translatable="false">PdfCraft</string>
-    <string name="open_with">Open in PdfCraft</string>
+    <string name="app_name" translatable="false">ArAr PDF Next</string>
+    <string name="open_with">Open in ArAr PDF Next</string>
 
     <!-- Shared: buttons and words used on many screens -->
     <string name="common_ok">OK</string>
@@ -98,7 +98,7 @@
     <string name="home_device_files_title">Files on your device</string>
     <string name="home_device_files_body">Choose folders to list PDFs from, such as Documents or a folder inside Download. Files you open from anywhere stay in Recent.</string>
     <!-- On this device, before any folder is added: the longer explanation -->
-    <string name="home_device_files_body_long">Choose folders to list PDFs from, such as Documents or a folder inside Download (Android doesn\'t let apps list the whole Download folder). PdfCraft sees only the folders you choose, and files you open from anywhere stay in Recent.</string>
+    <string name="home_device_files_body_long">Choose folders to list PDFs from, such as Documents or a folder inside Download (Android doesn\'t let apps list the whole Download folder). ArAr PDF Next sees only the folders you choose, and files you open from anywhere stay in Recent.</string>
     <string name="home_no_pdfs_title">No PDFs in your folders</string>
     <string name="home_no_pdfs_body">PDFs in the folders you added will appear here.</string>
     <string name="home_add_folder">Add a folder</string>
@@ -201,18 +201,18 @@
     <string name="home_no_results_body">Check the spelling, or try a shorter name.</string>
 
     <!-- Settings -->
-    <string name="home_about_app">About PdfCraft</string>
+    <string name="home_about_app">About ArAr PDF Next</string>
     <string name="home_preferences">Preferences</string>
     <string name="home_help_support">Help &amp; Support</string>
     <string name="home_help">Help</string>
     <string name="home_report_problem">Report a problem or request a feature</string>
-    <string name="home_leaving_title">Leaving PdfCraft</string>
+    <string name="home_leaving_title">Leaving ArAr PDF Next</string>
     <string name="home_continue">Continue</string>
     <string name="home_leaving_body">This opens a web page in your browser.</string>
 
     <!-- Settings: Preferences -->
     <string name="home_section_notifications">Notifications</string>
-    <string name="home_no_notifications">PdfCraft doesn\'t send notifications.</string>
+    <string name="home_no_notifications">ArAr PDF Next doesn\'t send notifications.</string>
     <string name="home_section_suggestions">Auto-suggestions</string>
     <string name="home_offer_suggestions">Offer words you used before when filling in forms</string>
     <string name="home_clear_suggestions">Clear suggestions</string>
@@ -229,7 +229,7 @@
     <!-- N, P, Page Down, Page Up, Ctrl+P, Ctrl, + and − are keys on the keyboard -->
     <string name="home_keyboard_shortcuts_body">With a keyboard connected: N or Page Down for the next page, P or Page Up for the previous one, the arrow keys to scroll, Ctrl+P to print, Ctrl and + or − to zoom.</string>
     <string name="home_section_extra">Extra Features</string>
-    <string name="home_extra_body">Optional changes to how PdfCraft looks and works.</string>
+    <string name="home_extra_body">Optional changes to how ArAr PDF Next looks and works.</string>
     <string name="home_status_bar_in_documents">Show the status bar in documents</string>
     <string name="home_status_bar_in_documents_body">The status bar shows with the toolbars. When you tap to hide them, the page uses the whole screen, around the camera too.</string>
     <string name="home_search_count">Show the number of search results</string>
@@ -255,7 +255,7 @@
     <string name="home_source_code">Source code</string>
     <string name="home_engine">PdfCraft engine</string>
     <!-- Keep the licence names (MIT, Apache-2.0) and the trademark notice -->
-    <string name="home_legal_notice">PdfCraft for Android is built on PdfCraft\'s Rust engine. MIT OR Apache-2.0. PdfCraft is not affiliated with Adobe; Acrobat is a trademark of Adobe Inc.</string>
+    <string name="home_legal_notice">ArAr PDF Next is powered by the open-source PdfCraft Rust engine (MIT OR Apache-2.0). Not affiliated with Adobe; Acrobat is a trademark of Adobe Inc.</string>
 
     <!-- Tool screens: Compress PDF -->
     <string name="tools_compress_action">Compress</string>
@@ -511,7 +511,7 @@
 
     <!-- Voice comments: the microphone was refused before -->
     <string name="voice_mic_title">Use the microphone?</string>
-    <string name="voice_mic_rationale">PdfCraft needs the microphone to record voice comments. You can allow it in the app\'s settings.</string>
+    <string name="voice_mic_rationale">ArAr PDF Next needs the microphone to record voice comments. You can allow it in the app\'s settings.</string>
     <string name="voice_open_settings">Open settings</string>
     <string name="voice_not_now">Not now</string>
 
@@ -595,7 +595,7 @@
     <string name="sign_remove_id_title">Remove digital ID?</string>
     <string name="sign_remove">Remove</string>
     <!-- Translator note: %1$s is the person's name on the digital ID -->
-    <string name="sign_remove_id_message">%1$s\'s digital ID is removed from PdfCraft. Documents already signed with it keep their signatures.</string>
+    <string name="sign_remove_id_message">%1$s\'s digital ID is removed from ArAr PDF Next. Documents already signed with it keep their signatures.</string>
 
     <!-- Digital signatures: the password of a digital ID file being added -->
     <string name="sign_add">Add</string>
@@ -614,7 +614,7 @@
     <string name="sign_password_again">The password again</string>
     <string name="sign_password_short">The password needs at least 8 characters.</string>
     <string name="sign_password_mismatch">The passwords don\'t match.</string>
-    <string name="sign_password_note">PdfCraft doesn\'t keep the password and can\'t recover it: you type it each time you sign.</string>
+    <string name="sign_password_note">ArAr PDF Next doesn\'t keep the password and can\'t recover it: you type it each time you sign.</string>
 
     <!-- Digital signatures: tapping an empty signature field -->
     <string name="sign_add_your_signature">Add your signature</string>
@@ -1025,11 +1025,11 @@
     <!-- Messages: notices at the bottom of the screen, progress, errors -->
     <!-- ================================================================== -->
     <!-- Messages: opening documents -->
-    <string name="msg_engine_not_started">PdfCraft couldn\'t start.</string>
+    <string name="msg_engine_not_started">ArAr PDF Next couldn\'t start.</string>
     <string name="msg_file_moved">This file has been moved or deleted.</string>
-    <string name="msg_opened_own_copy">Opened PdfCraft\'s copy. To change the original, open it again from the app it\'s in.</string>
+    <string name="msg_opened_own_copy">Opened ArAr PDF Next\'s copy. To change the original, open it again from the app it\'s in.</string>
     <!-- "Open file" is the name of the button on Home that picks a file. -->
-    <string name="msg_file_access_lost">PdfCraft can\'t open this file any more. Open it again from the app it\'s in, or with Open file.</string>
+    <string name="msg_file_access_lost">ArAr PDF Next can\'t open this file any more. Open it again from the app it\'s in, or with Open file.</string>
 
     <!-- Messages: undo and redo. %1$s is the name of the edit, as the engine gives it (for example "Add comment"). -->
     <string name="msg_undone">%1$s undone</string>
@@ -1099,7 +1099,7 @@
     <!-- %1$s is the name of the person the digital ID belongs to. -->
     <string name="msg_id_added">Added %1$s\'s digital ID</string>
     <!-- %1$s is the reason the file was refused. -->
-    <string name="msg_id_unusable">PdfCraft can\'t use this file as a digital ID: %1$s</string>
+    <string name="msg_id_unusable">ArAr PDF Next can\'t use this file as a digital ID: %1$s</string>
     <string name="msg_busy_creating_id">Creating your digital ID…</string>
     <string name="msg_id_created">Digital ID created</string>
     <string name="msg_busy_signing">Signing…</string>
@@ -1131,7 +1131,7 @@
 
     <!-- Messages: forms -->
     <string name="msg_form_cleared">Form cleared</string>
-    <string name="msg_button_submit">This button sends the form online, which PdfCraft doesn\'t do.</string>
+    <string name="msg_button_submit">This button sends the form online, which ArAr PDF Next doesn\'t do.</string>
     <!-- Words remembered from form fields, offered while typing. -->
     <string name="msg_suggestions_cleared">Suggestions cleared</string>
 
@@ -1152,10 +1152,10 @@
     <string name="msg_busy_exporting_images">Exporting images…</string>
     <!-- %1$d is the page being exported, %2$d how many pages there are. -->
     <string name="msg_busy_exporting_page">Exporting page %1$d of %2$d…</string>
-    <!-- Pictures/PdfCraft is a folder on the phone: keep it as it is. -->
+    <!-- Pictures/ArAr PDF Next is a folder on the phone: keep it as it is. -->
     <plurals name="msg_images_saved">
-        <item quantity="one">%1$d image saved to Pictures/PdfCraft</item>
-        <item quantity="other">%1$d images saved to Pictures/PdfCraft</item>
+        <item quantity="one">%1$d image saved to Pictures/ArAr PDF Next</item>
+        <item quantity="other">%1$d images saved to Pictures/ArAr PDF Next</item>
     </plurals>
     <string name="msg_busy_creating_pdf">Creating PDF…</string>
     <!-- Create PDF takes at most this many files at once. -->
@@ -1175,7 +1175,7 @@
     <string name="msg_rename_not_here">This file can\'t be renamed here.</string>
     <string name="msg_duplicated">Duplicated as %1$s in Downloads</string>
     <string name="msg_delete_failed">The file couldn\'t be deleted.</string>
-    <string name="msg_delete_not_allowed">%1$s can\'t be deleted from PdfCraft: the app you opened it from doesn\'t allow it. Delete it there, or remove it from Recent.</string>
+    <string name="msg_delete_not_allowed">%1$s can\'t be deleted from ArAr PDF Next: the app you opened it from doesn\'t allow it. Delete it there, or remove it from Recent.</string>
     <string name="msg_file_deleted">%1$s deleted</string>
 
     <!-- ================================================================== -->
@@ -1227,4 +1227,12 @@
     <string name="service_action_forward">Forward 15 seconds</string>
     <!-- Translator note: notification button that stops reading aloud -->
     <string name="service_action_stop">Stop</string>
+
+    <!-- ArAr PDF Next theme and home redesign -->
+    <string name="home_section_theme">Appearance</string>
+    <string name="home_theme_system">System</string>
+    <string name="home_theme_light">Light</string>
+    <string name="home_theme_dark">Dark</string>
+    <string name="home_toggle_theme">Switch light or dark theme</string>
+    <string name="home_hero_subtitle">Fast, private, offline PDF workspace</string>
 </resources>

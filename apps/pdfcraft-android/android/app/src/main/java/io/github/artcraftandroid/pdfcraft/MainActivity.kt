@@ -72,7 +72,7 @@ class MainActivity : ComponentActivity() {
         if (savedInstanceState == null) openFromIntent(intent)
         collectRequests()
         setContent {
-            PdfcraftTheme(eInk = vm.eInkMode) {
+            PdfcraftTheme(choice = vm.theme, eInk = vm.eInkMode) {
                 AppRoot(
                     vm,
                     onBrowse = { launchSafely { pickPdf.launch(arrayOf("application/pdf")) } },

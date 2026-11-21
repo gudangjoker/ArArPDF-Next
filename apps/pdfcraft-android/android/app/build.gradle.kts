@@ -236,7 +236,7 @@ android {
     ndkVersion = "29.0.14206865"
 
     defaultConfig {
-        applicationId = "io.github.artcraftandroid.pdfcraft"
+        applicationId = "com.ararpdf.next"
         minSdk = minApi
         targetSdk = 36
         versionCode = appVersionCode
@@ -313,7 +313,6 @@ androidComponents {
         val assetsDir = File(cargoWorkspaceDir, "assets")
         val res = tasks.register<PdfcraftAssets>("pdfcraftResources$name") {
             val map = mapOf(
-                "app-icon/hicolor/512x512/apps/ai.storyteller.pdfcraft.png" to "drawable-nodpi/ic_launcher_tile.png",
                 "fonts/Inter-Regular.ttf" to "font/inter_regular.ttf",
                 "fonts/Inter-Medium.ttf" to "font/inter_medium.ttf",
                 "fonts/Inter-SemiBold.ttf" to "font/inter_semibold.ttf",

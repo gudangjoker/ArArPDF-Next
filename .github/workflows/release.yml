@@ -96,7 +96,7 @@ jobs:
           for abi in arm64-v8a armeabi-v7a; do
             ./gradlew assembleRelease "-Ppdfcraft.abis=$abi" "-Ppdfcraft.version=$VERSION" --no-daemon
             suffix=""; [ "$abi" = arm64-v8a ] || suffix="-$abi"
-            cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/dist/pdfcraft-android-$VERSION$suffix.apk"
+            cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/dist/arar-pdf-next-$VERSION$suffix.apk"
           done
 
       - name: APK
