@@ -99,7 +99,7 @@ data class EditImage(val page: Int, val number: Int, val rect: FloatArray)
 enum class EditMode { Select, AddText, AddImage }
 
 /** The selection outline and its handles, as the reference draws them. */
-private val SelectionBlue = Color(0xFF448AFF)
+private val SelectionBlue = Color(0xFF0062FF)
 
 /** The text colours Edit PDF offers, in the reference's order. */
 private val EditColors = listOf(
@@ -466,7 +466,7 @@ private fun BoxScope.FloatingMenu(a: Offset, b: Offset, top: Float, content: @Co
     val y = if (above > top) above else b.y + gap
     Row(
         Modifier.offset { IntOffset(x.roundToInt(), y.roundToInt()) }.onSizeChanged { menu = it }
-            .shadow(6.dp, RoundedCornerShape(4.dp)).background(Color(0xFF303030), RoundedCornerShape(4.dp)).height(48.dp),
+            .shadow(8.dp, RoundedCornerShape(14.dp)).background(Color(0xFF131C2E), RoundedCornerShape(14.dp)).height(48.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) { content() }
 }
@@ -487,7 +487,7 @@ private fun MenuIconButton(icon: ImageVector, label: String, onClick: () -> Unit
 
 @Composable
 private fun MenuSplit() {
-    Box(Modifier.width(1.dp).height(48.dp).background(Color(0xFF4B4B4B)))
+    Box(Modifier.width(1.dp).height(48.dp).background(Color(0xFF283754)))
 }
 
 private fun Modifier.fillMaxHeightRow(): Modifier = this.height(48.dp)
@@ -572,7 +572,7 @@ private fun BoxScope.InlineEditor(vm: AppViewModel, doc: OpenDocument, para: Par
         if (typo != null) {
             Row(
                 Modifier.offset { IntOffset(a.x.roundToInt(), (a.y - 48.dp.toPx()).roundToInt()) }
-                    .background(Color(0xFF2C2C2C), androidx.compose.foundation.shape.RoundedCornerShape(4.dp)).padding(horizontal = 4.dp),
+                    .background(Color(0xFF131C2E), androidx.compose.foundation.shape.RoundedCornerShape(12.dp)).padding(horizontal = 6.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 for (word in typo.suggestions) {

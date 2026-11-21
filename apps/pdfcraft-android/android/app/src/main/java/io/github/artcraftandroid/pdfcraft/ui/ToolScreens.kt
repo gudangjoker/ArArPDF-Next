@@ -135,7 +135,8 @@ fun ToolScaffold(
 fun FileCard(name: String, size: Long?, modifier: Modifier = Modifier, trailing: (@Composable () -> Unit)? = null) {
     val c = pdfColors
     Row(
-        modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp).clip(RoundedCornerShape(8.dp)).background(c.surfaceRaised).padding(12.dp),
+        modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp).clip(RoundedCornerShape(14.dp)).background(c.surfaceRaised)
+            .border(1.dp, c.divider.copy(alpha = 0.65f), RoundedCornerShape(14.dp)).padding(12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         PdfBadge()
@@ -637,9 +638,10 @@ fun CropScreen(vm: AppViewModel, doc: OpenDocument) {
         Row(Modifier.fillMaxWidth().background(c.desk).height(88.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
             if (allPages) BarIcon(LucideIcons.ChevronLeft, stringResource(R.string.tools_previous_page), { page = (page - 1).coerceAtLeast(0) }, enabled = page > 0)
             Box(
-                Modifier.widthIn(min = 102.dp).height(32.dp).clip(RoundedCornerShape(16.dp)).background(Color(0xFFD1D1D1)).padding(horizontal = 16.dp),
+                Modifier.widthIn(min = 102.dp).height(34.dp).clip(RoundedCornerShape(17.dp)).background(c.surfaceRaised)
+                    .border(1.dp, c.divider, RoundedCornerShape(17.dp)).padding(horizontal = 16.dp),
                 contentAlignment = Alignment.Center,
-            ) { Text(stringResource(R.string.tools_page_number, page + 1), color = Color(0xFF2C2C2C), fontSize = 15.sp) }
+            ) { Text(stringResource(R.string.tools_page_number, page + 1), color = c.text, fontSize = 14.sp, fontWeight = FontWeight.Medium) }
             if (allPages) BarIcon(LucideIcons.ChevronRight, stringResource(R.string.tools_next_page), { page = (page + 1).coerceAtMost(doc.pageCount - 1) }, enabled = page < doc.pageCount - 1)
         }
         Row(Modifier.fillMaxWidth().height(54.dp).background(c.surface).padding(start = 12.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {

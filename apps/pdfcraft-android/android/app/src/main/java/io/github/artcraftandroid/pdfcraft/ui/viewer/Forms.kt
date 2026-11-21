@@ -87,7 +87,7 @@ fun BoxScope.FieldEditor(vm: AppViewModel, edit: FieldEdit) {
                     ) {
                         androidx.compose.material3.RadioButton(
                             selected = w.value == value, onClick = { vm.fieldEdit = null; vm.fillField(doc, w.field, value) },
-                            colors = androidx.compose.material3.RadioButtonDefaults.colors(selectedColor = Color(0xFF1473E6), unselectedColor = c.icon),
+                            colors = androidx.compose.material3.RadioButtonDefaults.colors(selectedColor = c.accent, unselectedColor = c.icon),
                         )
                         Spacer(Modifier.width(12.dp))
                         Text(label.ifBlank { value }, color = c.text, fontSize = 17.sp)
@@ -127,7 +127,7 @@ fun BoxScope.FieldEditor(vm: AppViewModel, edit: FieldEdit) {
             onValueChange = { v -> text = w.maxLength?.let { v.take(it.toInt()) } ?: v },
             singleLine = !w.multiline,
             textStyle = TextStyle(color = Color.Black, fontSize = fontSize, lineHeight = fontSize * 1.15f),
-            cursorBrush = SolidColor(Color(0xFF1473E6)),
+            cursorBrush = SolidColor(c.accent),
             visualTransformation = if (w.password) PasswordVisualTransformation() else VisualTransformation.None,
             keyboardOptions = KeyboardOptions(imeAction = if (w.multiline) ImeAction.Default else ImeAction.Next),
             keyboardActions = KeyboardActions(onNext = { commit(); vm.nextField(doc, w, forward = true) }),

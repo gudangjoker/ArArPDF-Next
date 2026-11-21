@@ -323,14 +323,14 @@ fun ViewerScreen(vm: AppViewModel, doc: OpenDocument) {
             enter = androidx.compose.animation.fadeIn(), exit = androidx.compose.animation.fadeOut(),
         ) {
             Row(
-                Modifier.height(32.dp).clip(androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).background(Color(0xCCFFFFFF))
-                    .border(0.5.dp, Color(0xFFF5F5F5), androidx.compose.foundation.shape.RoundedCornerShape(5.dp))
-                    .padding(horizontal = 8.dp),
+                Modifier.height(34.dp).clip(androidx.compose.foundation.shape.RoundedCornerShape(17.dp)).background(c.surface.copy(alpha = 0.92f))
+                    .border(1.dp, c.divider, androidx.compose.foundation.shape.RoundedCornerShape(17.dp))
+                    .padding(horizontal = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(doc.title.removeSuffix(".pdf"), color = Color(0xFF202020), fontSize = 13.sp, maxLines = 1)
-                Spacer(Modifier.width(4.dp))
-                Text("PDF", color = Color(0xFF202020), fontSize = 11.sp)
+                Text(doc.title.removeSuffix(".pdf").removeSuffix(".PDF"), color = c.text, fontSize = 13.sp, fontWeight = FontWeight.Medium, maxLines = 1)
+                Spacer(Modifier.width(6.dp))
+                Text("PDF", color = c.red, fontSize = 11.sp, fontWeight = FontWeight.Bold)
             }
         }
 
@@ -392,6 +392,7 @@ fun ViewerScreen(vm: AppViewModel, doc: OpenDocument) {
                             onMore = { ctl.sheet = if (ctl.sheet == ViewerSheet.More) ViewerSheet.None else ViewerSheet.More },
                             moreOpen = ctl.sheet == ViewerSheet.More,
                             title = if (ctl.tool == ViewerTool.Edit) stringResource(R.string.common_tool_edit_pdf) else null,
+                            docTitle = doc.title,
                             undoLabel = if (doc.localUndo != null) stringResource(R.string.viewer_undo_drawing) else doc.info.undo,
                             redoLabel = if (doc.localUndo != null) stringResource(R.string.viewer_undo_drawing) else doc.info.redo,
                         )

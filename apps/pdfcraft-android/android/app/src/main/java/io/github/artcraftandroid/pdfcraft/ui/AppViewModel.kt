@@ -855,8 +855,8 @@ class AppViewModel(app: Application, private val saved: SavedStateHandle) : Andr
     val twoPagesOffered: Boolean
         get() = twoPagesOnPhones || getApplication<Application>().resources.configuration.smallestScreenWidthDp >= 600
 
-    /** Document properties is in the viewer's menu (Extra Features, #55). */
-    var propertiesInMenu by mutableStateOf(appPrefs.getBoolean("propertiesInMenu", false))
+    /** Document properties is in the viewer's menu. */
+    var propertiesInMenu by mutableStateOf(appPrefs.getBoolean("propertiesInMenu", true))
         private set
 
     fun updatePropertiesInMenu(on: Boolean) {
@@ -879,7 +879,7 @@ class AppViewModel(app: Application, private val saved: SavedStateHandle) : Andr
         return FileFacts(location, modified, custom)
     }
 
-    var twoPagesOnPhones by mutableStateOf(appPrefs.getBoolean("twoPagesOnPhones", false))
+    var twoPagesOnPhones by mutableStateOf(appPrefs.getBoolean("twoPagesOnPhones", true))
         private set
 
     fun updateTwoPagesOnPhones(on: Boolean) {
@@ -957,7 +957,7 @@ class AppViewModel(app: Application, private val saved: SavedStateHandle) : Andr
      * Extra Features ▸ the status bar in documents: shown with the viewer's bars, and the page uses the
      * whole screen when they hide (off: the reference's black band where the camera is).
      */
-    var statusBarInDocuments by mutableStateOf(appPrefs.getBoolean("statusBarInDocuments", false))
+    var statusBarInDocuments by mutableStateOf(appPrefs.getBoolean("statusBarInDocuments", true))
         private set
 
     fun updateStatusBarInDocuments(on: Boolean) {
@@ -967,9 +967,9 @@ class AppViewModel(app: Application, private val saved: SavedStateHandle) : Andr
 
     /**
      * Extra Features ▸ the number of search results: Find shows which result is on screen and how
-     * many there are, "3 of 12" (#39; the reference's page view shows no count).
+     * many there are, "3 of 12".
      */
-    var searchCount by mutableStateOf(appPrefs.getBoolean("searchCount", false))
+    var searchCount by mutableStateOf(appPrefs.getBoolean("searchCount", true))
         private set
 
     fun updateSearchCount(on: Boolean) {

@@ -94,6 +94,8 @@ fun ViewerTopBar(
     moreOpen: Boolean,
     /** A tool with its own title (Edit PDF): Done, the title and Undo only. */
     title: String? = null,
+    /** The document's name, shown in the top bar while viewing. */
+    docTitle: String? = null,
     /** What Undo and Redo would take back or bring back, for their menu. */
     undoLabel: String? = null,
     redoLabel: String? = null,
@@ -106,28 +108,40 @@ fun ViewerTopBar(
         }.padding(bottom = 1.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.width(56.dp), contentAlignment = Alignment.Center) {
+        Box(Modifier.width(52.dp), contentAlignment = Alignment.Center) {
             if (toolActive && doneIsCheck) {
                 BarIcon(LucideIcons.Check, stringResource(R.string.common_done), onBack, tint = c.toolAccent)
             } else {
-                BarIcon(LucideIcons.ArrowLeft, stringResource(R.string.common_back), onBack, iconSize = 27.dp)
+                BarIcon(LucideIcons.ArrowLeft, stringResource(R.string.common_back), onBack, iconSize = 24.dp)
             }
         }
         if (title != null) {
-            Spacer(Modifier.width(6.dp))
-            Text(title, color = c.label, fontSize = 17.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold, modifier = Modifier.weight(1f))
+            Spacer(Modifier.width(4.dp))
+            Text(title, color = c.label, fontSize = 17.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f))
             UndoMenuButton(canUndo, canRedo, onUndo, onRedo, undoLabel, redoLabel)
             Spacer(Modifier.width(10.dp))
             return@Row
         }
-        if (!toolActive) {
-            BarDivider(height = 24.dp)
-            Spacer(Modifier.width(14.dp))
-            // with something to undo the reference shrinks the switch to a plain speaker button
-            if (canUndo && !readingAloud) BarIcon(LucideIcons.Volume2, stringResource(R.string.common_tool_read_aloud), onReadAloud) else ReadAloudSwitch(readingAloud, onReadAloud)
+        if (!toolActive && !readingAloud && docTitle != null) {
+            Text(
+                docTitle.removeSuffix(".pdf").removeSuffix(".PDF"),
+                color = c.label,
+                fontSize = 16.sp,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f).padding(end = 4.dp),
+            )
+            BarIcon(LucideIcons.Volume2, stringResource(R.string.common_tool_read_aloud), onReadAloud, size = 40.dp, iconSize = 21.dp)
+        } else {
+            if (!toolActive) {
+                BarDivider(height = 24.dp)
+                Spacer(Modifier.width(12.dp))
+                if (canUndo && !readingAloud) BarIcon(LucideIcons.Volume2, stringResource(R.string.common_tool_read_aloud), onReadAloud) else ReadAloudSwitch(readingAloud, onReadAloud)
+            }
+            Spacer(Modifier.weight(1f))
         }
-        Spacer(Modifier.weight(1f))
-        // while reading aloud the bar holds only back and the switch, as the reference's
+        // while reading aloud the bar holds only back and the switch
         if (readingAloud && !toolActive) {
             Spacer(Modifier.width(10.dp))
             return@Row
@@ -140,10 +154,10 @@ fun ViewerTopBar(
         } else if (canUndo) {
             UndoMenuButton(canUndo, canRedo, onUndo, onRedo, undoLabel, redoLabel)
         }
-        if (onSearch != null) BarIcon(LucideIcons.Search, stringResource(R.string.viewer_find_in_document), onSearch)
-        BarIcon(LucideIcons.Share2, stringResource(R.string.common_share), onShare)
-        BarIcon(LucideIcons.EllipsisVertical, stringResource(R.string.common_more_options), onMore, selected = moreOpen)
-        Spacer(Modifier.width(10.dp))
+        if (onSearch != null) BarIcon(LucideIcons.Search, stringResource(R.string.viewer_find_in_document), onSearch, size = 40.dp, iconSize = 21.dp)
+        BarIcon(LucideIcons.Share2, stringResource(R.string.common_share), onShare, size = 40.dp, iconSize = 21.dp)
+        BarIcon(LucideIcons.EllipsisVertical, stringResource(R.string.common_more_options), onMore, selected = moreOpen, size = 40.dp, iconSize = 21.dp)
+        Spacer(Modifier.width(6.dp))
     }
 }
 
@@ -229,18 +243,19 @@ fun SearchBar(
         }.padding(bottom = 1.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.width(56.dp), contentAlignment = Alignment.Center) { BarIcon(LucideIcons.ArrowLeft, stringResource(R.string.viewer_collapse), onClose, iconSize = 27.dp) }
+        Box(Modifier.width(52.dp), contentAlignment = Alignment.Center) { BarIcon(LucideIcons.ArrowLeft, stringResource(R.string.viewer_collapse), onClose, iconSize = 24.dp) }
         Box(
-            Modifier.weight(1f).padding(horizontal = 8.dp).height(40.dp).drawBehind {
-                drawLine(c.textSecondary, Offset(0f, size.height - 1f), Offset(size.width, size.height - 1f), 1.5f)
-            },
+            Modifier.weight(1f).padding(horizontal = 4.dp).height(40.dp)
+                .clip(androidx.compose.foundation.shape.RoundedCornerShape(12.dp))
+                .background(c.surfaceRaised)
+                .padding(horizontal = 12.dp),
             contentAlignment = Alignment.CenterStart,
         ) {
             BasicTextField(
                 value = query,
                 onValueChange = onQuery,
                 singleLine = true,
-                textStyle = TextStyle(fontFamily = Inter, fontSize = 17.sp, color = c.text),
+                textStyle = TextStyle(fontFamily = Inter, fontSize = 15.sp, color = c.text),
                 cursorBrush = SolidColor(c.accent),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = {
@@ -250,7 +265,7 @@ fun SearchBar(
                 modifier = Modifier.fillMaxWidth().focusRequester(focus).semantics { contentDescription = findLabel },
                 decorationBox = { inner ->
                     Box(contentAlignment = Alignment.CenterStart) {
-                        if (query.isEmpty()) Text(findLabel, color = c.textSecondary, fontSize = 17.sp, fontStyle = FontStyle.Italic)
+                        if (query.isEmpty()) Text(findLabel, color = c.textSecondary, fontSize = 15.sp)
                         inner()
                     }
                 },
@@ -280,13 +295,13 @@ private fun QuickItem(icon: ImageVector, label: String, onClick: () -> Unit, sub
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
-            Modifier.size(44.dp).offset(y = 2.5.dp).background(if (selected) c.divider else Color.Transparent, androidx.compose.foundation.shape.RoundedCornerShape(4.dp)),
+            Modifier.size(44.dp).offset(y = 2.5.dp).background(if (selected) c.accent.copy(alpha = if (c.dark) 0.22f else 0.14f) else Color.Transparent, androidx.compose.foundation.shape.RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            Icon(icon, null, tint = c.icon, modifier = Modifier.size(24.dp))
+            Icon(icon, null, tint = if (selected) c.accent else c.icon, modifier = Modifier.size(23.dp))
             if (subTools) {
                 // the small corner triangle: this tool has a row of sub-tools
-                val tint = c.cornerMark
+                val tint = if (selected) c.accent else c.textTertiary
                 Box(Modifier.size(6.dp).offset(x = 16.dp, y = 13.dp).drawBehind {
                     val p = Path().apply { moveTo(size.width, 0f); lineTo(size.width, size.height); lineTo(0f, size.height); close() }
                     drawPath(p, tint)
@@ -350,9 +365,7 @@ fun QuickToolbar(
                     .semantics { contentDescription = handleLabel },
                 contentAlignment = Alignment.TopCenter,
             ) {
-                // measured on the dark bar; the light bar's grey is our own match
-                val handle = if (c.dark) Color(0xFF6A6A6A) else Color(0xFFC4C4C4)
-                Box(Modifier.padding(top = 15.dp).size(40.dp, 4.dp).background(handle, androidx.compose.foundation.shape.RoundedCornerShape(2.dp)))
+                Box(Modifier.padding(top = 12.dp).size(40.dp, 4.dp).background(c.handle, androidx.compose.foundation.shape.RoundedCornerShape(2.dp)))
             }
             androidx.compose.animation.AnimatedVisibility(open && chips.isNotEmpty()) {
                 Row(
@@ -378,16 +391,16 @@ fun QuickToolbar(
 @Composable
 private fun QuickChipView(chip: QuickChip) {
     val c = pdfColors
-    val shape = androidx.compose.foundation.shape.RoundedCornerShape(6.dp)
+    val shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
     Row(
-        Modifier.heightIn(min = 37.dp).clip(shape).background(if (c.dark) Color(0xFF080808) else Color(0xFFEDEDED))
-            .clickable(role = Role.Button, onClick = chip.onClick).padding(start = 7.dp, end = 10.dp),
+        Modifier.heightIn(min = 38.dp).clip(shape).background(c.surfaceRaised)
+            .border(1.dp, c.divider.copy(alpha = 0.65f), shape)
+            .clickable(role = Role.Button, onClick = chip.onClick).padding(start = 10.dp, end = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        // sized against the reference: its icon draws about 18 dp, its name 14 sp in a narrower face
-        Icon(chip.icon, null, tint = chip.tint, modifier = Modifier.size(21.dp))
+        Icon(chip.icon, null, tint = chip.tint, modifier = Modifier.size(19.dp))
         Spacer(Modifier.width(8.dp))
-        Text(chip.label, color = c.text, fontSize = 14.sp, letterSpacing = (-0.65).sp, maxLines = 1)
+        Text(chip.label, color = c.text, fontSize = 13.5.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Medium, maxLines = 1)
     }
 }
 
@@ -487,7 +500,7 @@ private fun SubButton(icon: ImageVector, description: String, selected: Boolean,
         Modifier.width(width).height(54.dp).slideToWhenChosen(selected && !shaded).clickable(enabled = enabled, role = Role.Button, onClick = onClick).semantics { contentDescription = description },
         contentAlignment = Alignment.Center,
     ) {
-        if (shaded && selected) Box(Modifier.requiredSize(40.dp).background(c.pressed, androidx.compose.foundation.shape.RoundedCornerShape(5.dp)))
+        if (shaded && selected) Box(Modifier.requiredSize(40.dp).background(c.pressed, androidx.compose.foundation.shape.RoundedCornerShape(10.dp)))
         Icon(icon, null, tint = if (enabled) tint else tint.copy(alpha = 0.38f), modifier = Modifier.size(24.dp))
     }
 }
@@ -507,7 +520,7 @@ fun ColorDot(color: androidx.compose.ui.graphics.Color, selected: Boolean, onCli
         Modifier.width(36.dp).height(54.dp).clickable(role = Role.Button, onClick = onClick).semantics { contentDescription = colourLabel },
         contentAlignment = Alignment.Center,
     ) {
-        if (selected) Box(Modifier.requiredSize(40.dp).background(c.pressed, androidx.compose.foundation.shape.RoundedCornerShape(5.dp)))
+        if (selected) Box(Modifier.requiredSize(40.dp).background(c.pressed, androidx.compose.foundation.shape.RoundedCornerShape(10.dp)))
         Box(Modifier.size(20.dp).background(color, androidx.compose.foundation.shape.CircleShape))
     }
 }

@@ -222,7 +222,7 @@
     <string name="home_engine">Engine PdfCraft</string>
     <string name="home_legal_notice">ArAr PDF Next ditenagai oleh engine Rust sumber terbuka PdfCraft (MIT OR Apache-2.0). Tidak berafiliasi dengan Adobe; Acrobat adalah merek dagang Adobe Inc.</string>
 
-    <!-- Layar Alat: Kompres, Kata Sandi, Ekspor, Buat -->
+    <!-- Layar Alat: Kompres, Kata Sandi, Ekspor, Buat, Gabung, Potong, Pindai -->
     <string name="tools_compress_action">Kompres</string>
     <string name="tools_compression_level">Tingkat kompresi:</string>
     <string name="tools_compress_high">Kompresi tinggi</string>
@@ -238,44 +238,686 @@
     <string name="tools_repeat_password">Ulangi kata sandi *</string>
     <string name="tools_password_rule">Gunakan 6 hingga 128 karakter: huruf, angka, dan simbol, tanpa spasi.</string>
     <string name="tools_password_mismatch">Kata sandi tidak cocok.</string>
-    <string name="tools_about_passwords_body">Salinan dienkripsi dengan AES-256. Simpan kata sandi dengan aman karena tidak dapat dipulihkan.</string>
+    <string name="tools_about_passwords_body">Salinan dienkripsi dengan AES-256. Simpan kata sandi dengan aman karena tidak dapat dipulihkan. Untuk menghapus kata sandi nanti, buka salinan tersebut lalu pilih Hapus kata sandi.</string>
 
     <string name="tools_export_action">Ekspor</string>
     <string name="tools_export_document">Dokumen</string>
     <string name="tools_export_image">Gambar</string>
     <string name="tools_export_not_allowed">Keamanan dokumen ini tidak mengizinkan ekspor teks. Ekspor halaman sebagai gambar sebagai gantinya.</string>
+    <string name="tools_format_word">Word (docx)</string>
+    <string name="tools_format_rtf">Rich Text Format (rtf)</string>
+    <string name="tools_format_excel">Excel (xlsx)</string>
+    <string name="tools_format_powerpoint">PowerPoint (pptx)</string>
+    <string name="tools_format_jpeg">JPEG (jpeg)</string>
+    <string name="tools_format_png">PNG (png)</string>
 
     <string name="tools_create_title">Pilih file untuk membuat PDF</string>
     <string name="tools_browse_files">Telusuri file</string>
     <string name="tools_or_make_new">Atau buat yang baru</string>
+    <string name="tools_scan_document">Pindai dokumen</string>
 
-    <!-- Dialog & Pesan Aplikasi -->
-    <string name="root_enter_password">Masukkan kata sandi</string>
-    <string name="root_password_body">Masukkan kata sandi untuk membuka %1$s.</string>
-    <string name="root_skip">Lewati</string>
-    <string name="root_author_prompt_body">Nama Anda akan ditampilkan pada komentar yang Anda buat.</string>
-    <string name="root_read_only_title">File hanya-baca</string>
-    <string name="root_read_only_body">%1$s tidak dapat diubah langsung. Simpan salinan dengan perubahan Anda?</string>
-    <string name="root_discard">Buang</string>
-    <string name="root_open_link_title">Buka tautan?</string>
-    <string name="root_open_link_body">Buka %1$s di browser Anda?</string>
-    <string name="root_delete_bookmarks_title">Hapus semua penanda?</string>
-    <string name="root_delete_bookmarks_body">Semua penanda yang Anda tambahkan pada dokumen ini akan dihapus.</string>
-    <string name="root_delete_all">Hapus semua</string>
-
-    <string name="voice_mic_rationale">ArAr PDF Next memerlukan izin mikrofon untuk merekam komentar suara. Anda dapat mengaktifkannya di pengaturan aplikasi.</string>
-    <string name="sign_remove_id_message">ID digital %1$s akan dihapus dari ArAr PDF Next. Dokumen yang sudah ditandatangani tetap mempertahankan tanda tangannya.</string>
-    <string name="sign_password_note">ArAr PDF Next tidak menyimpan kata sandi dan tidak dapat memulihkannya: Anda mengetiknya setiap kali menandatangani.</string>
-    <string name="msg_engine_not_started">ArAr PDF Next gagal dimulai.</string>
-    <string name="msg_opened_own_copy">Membuka salinan ArAr PDF Next. Untuk mengubah file asli, buka kembali dari aplikasi asalnya.</string>
-    <string name="msg_file_access_lost">ArAr PDF Next tidak dapat lagi membuka file ini. Buka ulang dari aplikasi asalnya atau melalui Buka file.</string>
-    <string name="msg_id_unusable">ArAr PDF Next tidak dapat menggunakan file ini sebagai ID digital: %1$s</string>
-    <string name="msg_button_submit">Tombol ini mengirim formulir secara online, yang tidak dilakukan oleh ArAr PDF Next.</string>
-    <plurals name="msg_images_saved">
-        <item quantity="other">%1$d gambar disimpan ke Pictures/ArAr PDF Next</item>
+    <plurals name="tools_file_count">
+        <item quantity="other">%d file</item>
     </plurals>
-    <string name="msg_delete_not_allowed">%1$s tidak dapat dihapus dari ArAr PDF Next: aplikasi asalnya tidak mengizinkan. Hapus dari sana atau hapus dari Terbaru.</string>
+    <string name="tools_add_files">Tambah file</string>
+    <string name="tools_combine_too_many">Hapus beberapa file: maksimal 12 file dapat digabungkan.</string>
+    <string name="tools_drag_to_reorder">Seret untuk mengubah urutan</string>
+    <string name="tools_remove_file">Hapus %1$s</string>
+    <string name="tools_file_removed">File dihapus</string>
+    <string name="tools_combine_as_pdf">Gabung jadi PDF</string>
+    <string name="tools_combine_name_title">Beri nama file gabungan</string>
+
+    <string name="tools_all_pages">Semua halaman</string>
+    <string name="tools_current_page">Halaman ini</string>
+    <string name="tools_previous_page">Halaman sebelumnya</string>
+    <string name="tools_next_page">Halaman berikutnya</string>
+    <string name="tools_page_number">Halaman %1$d</string>
+    <string name="tools_reset">Atur ulang</string>
+    <string name="tools_crop">Potong</string>
+    <string name="tools_auto_detect">Deteksi otomatis</string>
+    <string name="tools_no_crop">Tanpa potong</string>
+
+    <string name="tools_page_of">Halaman %1$d dari %2$d</string>
+    <string name="tools_save_pdf">Simpan PDF</string>
+    <string name="tools_scan_name_description">Nama file: %1$s. Ubah</string>
+    <string name="tools_scan_empty">Ambil foto setiap halaman</string>
+    <string name="tools_add_page">Tambah halaman</string>
+    <string name="tools_retake">Ambil ulang</string>
+    <string name="tools_filter_original">Asli</string>
+    <string name="tools_filter_auto_colour">Warna otomatis</string>
+    <string name="tools_filter_grayscale">Abu-abu</string>
+    <string name="tools_filter_whiteboard">Papan tulis</string>
+    <string name="tools_filter_light_text">Teks terang</string>
+
+    <!-- Dialog & Lisensi -->
+    <string name="root_skip">Lewati</string>
+    <string name="root_author_prompt_body">Tambahkan nama untuk menampilkan pembuat setiap komentar. Anda dapat mengubahnya nanti di Preferensi.</string>
+    <string name="root_read_only_title">File hanya-baca</string>
+    <string name="root_discard">Buang</string>
+    <string name="root_read_only_body">Perubahan pada %1$s tidak dapat disimpan di lokasi aslinya. Simpan salinan agar perubahan tidak hilang.</string>
+    <string name="root_open_link_title">Buka halaman web</string>
+    <string name="root_open_link_body">Buka halaman di %1$s?</string>
+    <string name="root_delete_bookmarks_title">Hapus semua penanda?</string>
+    <string name="root_delete_all">Hapus semua</string>
+    <string name="root_delete_bookmarks_body">Semua penanda pada dokumen ini akan dihapus.</string>
+    <string name="root_reading_mode_title">Mode Baca</string>
+    <string name="root_reading_mode_body">Alat bekerja langsung pada halaman. Pilih Berkelanjutan atau Satu halaman di Pengaturan tampilan untuk menggunakannya.</string>
+    <string name="root_enter_password">Masukkan kata sandi</string>
+    <string name="root_password_body">%1$s dilindungi. Masukkan kata sandi untuk membuka dokumen.</string>
+
+    <string name="root_licence_pdfcraft">PdfCraft (engine sumber terbuka)</string>
+    <string name="root_licence_pdfcraft_terms">MIT OR Apache-2.0, oleh storytold dan para kontributor</string>
+    <string name="root_licence_lucide">Ikon Lucide</string>
+    <string name="root_licence_inter">Font Inter</string>
+    <string name="root_licence_dancing_script">Font Dancing Script (tanda tangan ketik)</string>
+    <string name="root_licence_foxit">Font Foxit (untuk PDF yang tidak menyematkan font standar)</string>
+    <string name="root_licence_cmaps">Sumber daya Adobe CMap (untuk membaca PDF CJK)</string>
+    <string name="root_licence_ocrs">Model pengenalan teks (ocrs)</string>
+    <string name="root_licence_ocrs_terms">CC-BY-SA-4.0, Robert Knight; dilatih pada HierText</string>
+    <string name="root_licence_rust">hayro, lopdf, boa, dan dependensi Rust lainnya</string>
+    <string name="root_licence_rust_terms">MIT, Apache-2.0, dan lisensi kompatibel; lihat NOTICE pada kode sumber</string>
+
     <string name="ui_close_sheet">Tutup panel</string>
     <string name="ui_show_password">Tampilkan kata sandi</string>
     <string name="ui_hide_password">Sembunyikan kata sandi</string>
+
+    <!-- Viewer -->
+    <string name="viewer_star_file">Beri bintang file ini</string>
+    <string name="viewer_unstar_file">Hapus bintang file ini</string>
+    <string name="viewer_undo_drawing">Coretan</string>
+    <string name="viewer_undo_or_redo">Urungkan atau ulangi</string>
+    <string name="viewer_undo_named">Urungkan %1$s</string>
+    <string name="viewer_redo_named">Ulangi %1$s</string>
+    <string name="viewer_find_in_document">Cari dalam dokumen</string>
+    <string name="viewer_collapse">Tutup pencarian</string>
+    <string name="viewer_find_previous">Sebelumnya</string>
+    <string name="viewer_find_next">Berikutnya</string>
+    <string name="viewer_show_shortcuts">Tampilkan pintasan</string>
+    <string name="viewer_hide_shortcuts">Sembunyikan pintasan</string>
+    <string name="viewer_colour">Warna</string>
+
+    <string name="viewer_hint_highlight">Seret pada teks untuk menyorot</string>
+    <string name="viewer_hint_underline">Seret pada teks untuk menggarisbawahi</string>
+    <string name="viewer_hint_strikethrough">Seret pada teks untuk mencoret</string>
+    <string name="viewer_hint_draw">Gambar dengan satu jari, gulir dengan dua jari</string>
+    <string name="viewer_hint_comment">Ketuk lokasi komentar</string>
+    <string name="viewer_hint_text">Ketuk untuk menambah teks</string>
+    <string name="viewer_hint_fill_sign">Ketuk area untuk mengisi teks</string>
+
+    <string name="viewer_add_image">Tambah gambar</string>
+    <string name="viewer_image_from_photos">Dari galeri</string>
+    <string name="viewer_image_from_camera">Dari kamera</string>
+    <string name="viewer_close">Tutup</string>
+
+    <string name="viewer_page_of">Halaman %1$d dari %2$d</string>
+    <string name="viewer_scrub_of">dari %1$d</string>
+    <string name="viewer_go_to_page">Buka halaman</string>
+    <string name="viewer_go_to_page_range">1 - %1$d</string>
+    <string name="viewer_enter_page_number">Masukkan nomor halaman</string>
+    <string name="viewer_back_to_page">Kembali ke halaman %1$d</string>
+
+    <string name="viewer_add_comment">Tambah komentar</string>
+    <string name="viewer_strikethrough">Coret</string>
+    <string name="viewer_edit_text">Edit teks</string>
+    <string name="viewer_zoom_in">Perbesar</string>
+    <string name="viewer_zoom_out">Perkecil</string>
+    <string name="viewer_search_count">%1$d dari %2$d</string>
+    <string name="viewer_read_from_here">Baca dari sini</string>
+    <string name="viewer_copy_text">Salin teks</string>
+    <string name="viewer_selection_start">Awal pilihan</string>
+    <string name="viewer_selection_end">Akhir pilihan</string>
+
+    <string name="viewer_write_note">Tulis catatan</string>
+    <string name="viewer_write_reply">Tulis balasan</string>
+    <string name="viewer_add_text">Tambah teks</string>
+    <string name="viewer_reading_hint">Cubit atau ketuk dua kali untuk memperbesar teks.</string>
+    <string name="viewer_reading_no_text">Tidak ada teks yang dapat diatur ulang di halaman ini.</string>
+
+    <!-- Baca lantang -->
+    <string name="read_aloud_no_voice">Baca lantang memerlukan suara text-to-speech di ponsel ini.</string>
+    <string name="read_aloud_open_player">Buka pemutar</string>
+    <string name="read_aloud_close_player">Tutup pemutar</string>
+    <string name="read_aloud_read_again">Baca ulang</string>
+    <string name="read_aloud_back_15">Mundur 15 detik</string>
+    <string name="read_aloud_forward_15">Maju 15 detik</string>
+    <string name="read_aloud_voice">Suara</string>
+    <string name="read_aloud_choose_language">Pilih bahasa</string>
+    <string name="read_aloud_voice_settings">Pengaturan suara</string>
+
+    <!-- Komentar suara -->
+    <string name="voice_record_comment">Rekam komentar suara</string>
+    <string name="voice_mic_failed">Mikrofon tidak dapat dimulai. Mungkin sedang digunakan aplikasi lain.</string>
+    <string name="voice_nothing_recorded">Tidak ada suara yang terekam.</string>
+    <string name="voice_limit_warning">Perekaman berhenti otomatis di 30 menit.</string>
+    <string name="voice_recording">Merekam…</string>
+    <string name="voice_playing">Memutar…</string>
+    <string name="voice_listen_first">Dengarkan rekaman Anda sebelum mengirimnya</string>
+    <string name="voice_stop_recording">Hentikan rekaman</string>
+    <string name="voice_record_again">Rekam ulang</string>
+    <string name="voice_cannot_play">Rekaman ini tidak dapat diputar.</string>
+    <string name="voice_play_audio">Putar audio</string>
+    <string name="voice_comment_kind">Komentar suara</string>
+    <string name="voice_mic_title">Gunakan mikrofon?</string>
+    <string name="voice_mic_rationale">ArAr PDF Next memerlukan izin mikrofon untuk merekam komentar suara. Anda dapat mengaktifkannya di pengaturan aplikasi.</string>
+    <string name="voice_open_settings">Buka pengaturan</string>
+    <string name="voice_not_now">Nanti saja</string>
+
+    <!-- Halaman -->
+    <string name="pages_title">Halaman</string>
+    <string name="pages_select">Pilih halaman</string>
+    <plurals name="pages_selected_count">
+        <item quantity="other">%1$d dipilih</item>
+    </plurals>
+    <string name="pages_page">Halaman %1$d</string>
+    <string name="pages_insert_page">Sisipkan halaman</string>
+    <string name="pages_extract">Ekstrak</string>
+    <string name="pages_rotate_left">Kiri</string>
+    <string name="pages_rotate_right">Kanan</string>
+    <string name="pages_insert">Sisipkan</string>
+    <string name="pages_at_start">Di awal</string>
+    <string name="pages_at_end">Di akhir</string>
+    <string name="pages_after_page">Setelah halaman %1$d</string>
+    <string name="pages_before_page">Sebelum halaman %1$d</string>
+    <string name="pages_blank_page">Halaman kosong</string>
+    <string name="pages_from_file">Dari file lain</string>
+    <string name="pages_from_scan">Dari pindaian</string>
+
+    <!-- Tanda tangan digital -->
+    <string name="sign_place_hint">Seret kotak di tempat tanda tangan diletakkan</string>
+    <string name="sign_section_id">ID Digital</string>
+    <string name="sign_no_id">Anda belum memiliki ID digital. Tambahkan file .p12 atau .pfx, atau buat ID digital sendiri.</string>
+    <string name="sign_add_id_file">Tambah file ID digital</string>
+    <string name="sign_create_id">Buat ID digital</string>
+    <string name="sign_section_appearance">Tampilan</string>
+    <string name="sign_look_name">Nama saja</string>
+    <string name="sign_look_typed">Nama diketik</string>
+    <string name="sign_look_drawn">Tanda tangan saya</string>
+    <string name="sign_look_name_about">Nama Anda dan tanggal di dalam kotak.</string>
+    <string name="sign_look_typed_about">Nama Anda dengan gaya tulisan tangan beserta nama dan tanggal di sampingnya.</string>
+    <string name="sign_look_drawn_about">Tanda tangan Isi &amp; Tanda Tangan yang tersimpan beserta nama dan tanggal di sampingnya.</string>
+    <string name="sign_look_drawn_missing">Buat tanda tangan di Isi &amp; Tanda Tangan terlebih dahulu.</string>
+    <string name="sign_section_reason">Alasan (opsional)</string>
+    <string name="sign_reason_hint">Contoh: Saya menyetujui dokumen ini</string>
+    <string name="sign_section_location">Lokasi (opsional)</string>
+    <string name="sign_location_hint">Kota atau tempat</string>
+    <string name="sign_section_password">Kata sandi untuk %1$s</string>
+    <string name="sign_id_password">Kata sandi ID digital</string>
+    <string name="sign_saves_note">Menandatangani akan menyimpan dokumen. Siapa pun yang membukanya dapat memeriksa apakah isi berubah setelah ditandatangani.</string>
+
+    <string name="sign_id_expired">ID digital ini kedaluwarsa pada %1$s.</string>
+    <string name="sign_id_not_yet_valid">ID digital ini belum berlaku hingga %1$s.</string>
+    <string name="sign_id_self_signed">Ditandatangani sendiri</string>
+    <string name="sign_id_issued_by">Diterbitkan oleh %1$s</string>
+    <string name="sign_id_valid_until">Berlaku hingga %1$s</string>
+    <string name="sign_remove_id_description">Hapus ID digital %1$s</string>
+    <string name="sign_remove_id_title">Hapus ID digital?</string>
+    <string name="sign_remove">Hapus</string>
+    <string name="sign_remove_id_message">ID digital %1$s akan dihapus dari ArAr PDF Next. Dokumen yang sudah ditandatangani tetap mempertahankan tanda tangannya.</string>
+
+    <string name="sign_add">Tambah</string>
+    <string name="sign_id_password_prompt">Masukkan kata sandi pelindung %1$s.</string>
+    <string name="sign_create_about">ID digital yang dibuat di sini bersifat self-signed: dokumen menampilkan jika ada perubahan setelah ditandatangani, namun tidak diverifikasi oleh otoritas sertifikat eksternal.</string>
+    <string name="sign_section_name">Nama</string>
+    <string name="sign_section_email">Email (opsional)</string>
+    <string name="sign_email_hint">nama@contoh.com</string>
+    <string name="sign_section_organisation">Organisasi (opsional)</string>
+    <string name="sign_organisation_hint">Perusahaan atau organisasi</string>
+    <string name="sign_password_hint">Minimal 8 karakter</string>
+    <string name="sign_password_again">Ulangi kata sandi</string>
+    <string name="sign_password_short">Kata sandi harus minimal 8 karakter.</string>
+    <string name="sign_password_mismatch">Kata sandi tidak cocok.</string>
+    <string name="sign_password_note">ArAr PDF Next tidak menyimpan kata sandi dan tidak dapat memulihkannya: Anda mengetiknya setiap kali menandatangani.</string>
+
+    <string name="sign_add_your_signature">Tambahkan tanda tangan Anda</string>
+    <string name="sign_signatures">Tanda Tangan</string>
+    <string name="sign_none">Dokumen ini belum memiliki tanda tangan.</string>
+    <string name="sign_unknown_signer">Penanda tangan tidak dikenal</string>
+    <string name="sign_empty_field">Kolom tanda tangan kosong</string>
+    <string name="sign_certified">Tersertifikasi</string>
+    <string name="sign_add_signature">Tambah tanda tangan digital</string>
+    <string name="sign_status_unsigned">Belum ditandatangani</string>
+    <string name="sign_status_valid">Valid</string>
+    <string name="sign_status_invalid">Tidak valid</string>
+    <string name="sign_status_unknown">Penanda tangan belum terverifikasi</string>
+
+    <string name="sign_detail_reason">Alasan: %1$s</string>
+    <string name="sign_detail_location">Lokasi: %1$s</string>
+    <string name="sign_detail_cert_self_signed">Sertifikat: ditandatangani sendiri</string>
+    <string name="sign_detail_cert_issued_by">Sertifikat: diterbitkan oleh %1$s</string>
+    <string name="sign_detail_valid_until">Berlaku hingga: %1$s</string>
+    <string name="sign_detail_certified_no_changes">Tersertifikasi: perubahan tidak diizinkan</string>
+    <string name="sign_detail_certified_forms">Tersertifikasi: pengisian formulir diizinkan</string>
+    <string name="sign_detail_certified_comments">Tersertifikasi: pengisian formulir dan komentar diizinkan</string>
+    <string name="sign_detail_changes_none">Perubahan sejak ditandatangani: tidak ada</string>
+    <string name="sign_detail_changes_allowed">Perubahan sejak ditandatangani: perubahan yang diizinkan</string>
+    <string name="sign_detail_changes_allowed_list">Perubahan sejak ditandatangani: diizinkan (%1$s)</string>
+    <string name="sign_detail_changes_disallowed">Perubahan sejak ditandatangani: ada perubahan tidak diizinkan</string>
+    <string name="sign_detail_changes_disallowed_list">Perubahan sejak ditandatangani: tidak diizinkan (%1$s)</string>
+    <string name="sign_field_unsigned">Belum ada yang menandatangani kolom ini.</string>
+    <string name="sign_go_to">Buka lokasinya</string>
+    <string name="sign_stop_trusting">Berhenti percayai</string>
+    <string name="sign_trust">Percayai penanda tangan ini</string>
+
+    <!-- Panel Viewer -->
+    <string name="sheet_stored_on_device">Tersimpan di perangkat ini</string>
+    <string name="sheet_read_only">Hanya-baca</string>
+    <string name="sheet_print">Cetak</string>
+    <string name="sheet_add_star">Beri bintang</string>
+    <string name="sheet_remove_star">Hapus bintang</string>
+    <string name="sheet_view_settings">Pengaturan tampilan</string>
+    <string name="sheet_pages">Halaman</string>
+    <string name="sheet_attachments">Lampiran</string>
+    <string name="sheet_bookmarks_contents">Penanda &amp; Daftar Isi</string>
+    <string name="sheet_comment_list">Daftar Komentar</string>
+    <string name="sheet_add_bookmark">Tambah penanda</string>
+    <string name="sheet_remove_bookmark">Hapus penanda</string>
+    <string name="sheet_export_as">Ekspor sebagai...</string>
+    <string name="sheet_undo_action">Urungkan %1$s</string>
+    <string name="sheet_redo_action">Ulangi %1$s</string>
+
+    <string name="sheet_continuous">Berkelanjutan</string>
+    <string name="sheet_single_page">Satu halaman</string>
+    <string name="sheet_two_pages">Dua halaman</string>
+    <string name="sheet_two_pages_cover">Dua halaman dengan sampul</string>
+    <string name="sheet_properties">Properti dokumen</string>
+
+    <!-- Properti Dokumen -->
+    <string name="props_section_file">File</string>
+    <string name="props_section_description">Deskripsi</string>
+    <string name="props_section_advanced">Lanjutan</string>
+    <string name="props_section_security">Keamanan</string>
+    <string name="props_section_custom">Kustom</string>
+    <string name="props_name">Nama</string>
+    <string name="props_size">Ukuran</string>
+    <string name="props_location">Lokasi</string>
+    <string name="props_modified">Diubah</string>
+    <string name="props_title">Judul</string>
+    <string name="props_author">Penulis</string>
+    <string name="props_subject">Subjek</string>
+    <string name="props_keywords">Kata kunci</string>
+    <string name="props_creator">Aplikasi pembuat</string>
+    <string name="props_producer">Pembuat PDF</string>
+    <string name="props_pdf_created">PDF dibuat</string>
+    <string name="props_pdf_modified">PDF diubah</string>
+    <string name="props_version">Versi PDF</string>
+    <string name="props_pages">Halaman</string>
+    <string name="props_page_size">Ukuran halaman</string>
+    <string name="props_page_size_mixed">%1$s (ukuran halaman bervariasi)</string>
+    <string name="props_tagged">PDF bertag</string>
+    <string name="props_password">Dilindungi kata sandi</string>
+    <string name="props_printing">Pencetakan</string>
+    <string name="props_copying">Salin teks dan gambar</string>
+    <string name="props_commenting">Komentar</string>
+    <string name="props_form_filling">Pengisian formulir</string>
+    <string name="props_assembly">Pengaturan halaman</string>
+    <string name="props_yes">Ya</string>
+    <string name="props_no">Tidak</string>
+    <string name="props_allowed">Diizinkan</string>
+    <string name="props_not_allowed">Tidak diizinkan</string>
+
+    <string name="sheet_reading_mode">Mode Baca</string>
+    <string name="sheet_night_mode">Mode Malam</string>
+    <string name="sheet_tab_contents">Daftar Isi</string>
+    <string name="sheet_tab_bookmarks">Penanda</string>
+    <string name="sheet_no_contents">Dokumen ini tidak memiliki daftar isi.</string>
+    <string name="sheet_up_level">Naik satu tingkat</string>
+    <string name="sheet_expand_entry">Bentangkan %1$s</string>
+    <string name="sheet_bookmarks_empty">Penanda Anda akan muncul di sini.</string>
+    <string name="sheet_add_a_bookmark">Tambah penanda</string>
+    <string name="sheet_bookmark_name_invalid">Nama tersebut tidak dapat digunakan.</string>
+    <string name="sheet_bookmark_removed">Penanda %1$s dihapus</string>
+    <string name="sheet_delete_all">Hapus semua</string>
+    <string name="sheet_page">Halaman %1$d</string>
+    <string name="sheet_customize_toolbar">Sesuaikan toolbar</string>
+
+    <plurals name="sheet_size_bytes">
+        <item quantity="other">%1$d byte</item>
+    </plurals>
+    <string name="sheet_size_kb">%1$.1f KB</string>
+    <string name="sheet_size_mb">%1$.1f MB</string>
+
+    <!-- Daftar Komentar -->
+    <string name="comments_title">Komentar</string>
+    <string name="comments_none">Tidak ada komentar</string>
+    <plurals name="comments_threads">
+        <item quantity="other">%1$d utas komentar</item>
+    </plurals>
+    <string name="comments_expand">Bentangkan</string>
+    <string name="comments_collapse">Ciutkan</string>
+    <string name="comments_copy_text">Salin teks</string>
+    <string name="comments_edit">Edit komentar</string>
+    <string name="comments_add">Tambah komentar</string>
+    <string name="comments_guest">Tamu</string>
+    <string name="comments_options">Opsi komentar</string>
+    <string name="comments_reply">Balas</string>
+    <string name="comments_reply_hint">Balas</string>
+    <string name="comments_avatar">Avatar</string>
+    <string name="comments_empty_title">Mulai berkomentar</string>
+    <string name="comments_empty_body">Komentar yang Anda tambahkan akan muncul di sini.</string>
+
+    <string name="comments_action_highlighted">Menyorot teks</string>
+    <string name="comments_action_underlined">Menggarisbawahi</string>
+    <string name="comments_action_struck_out">Mencoret teks</string>
+    <string name="comments_action_freehand">Menggambar bebas</string>
+    <string name="comments_action_arrow">Menggambar panah</string>
+    <string name="comments_action_line">Menggambar garis</string>
+    <string name="comments_action_rectangle">Menggambar persegi</string>
+    <string name="comments_action_oval">Menggambar oval</string>
+    <string name="comments_action_cloud">Menggambar awan</string>
+    <string name="comments_action_polygon">Menggambar poligon</string>
+    <string name="comments_action_joined_lines">Menggambar garis terhubung</string>
+    <string name="comments_action_stamp">Menambahkan stempel</string>
+    <string name="comments_action_note">Menambahkan catatan</string>
+    <string name="comments_action_callout">Menambahkan keterangan</string>
+    <string name="comments_action_text_box">Menambahkan kotak teks</string>
+    <string name="comments_action_replacement">Menyarankan penggantian</string>
+    <string name="comments_action_insertion">Menyarankan penyisipan</string>
+    <string name="comments_action_voice">Merekam catatan suara</string>
+    <string name="comments_action_other">Berkomentar</string>
+
+    <string name="comments_previous">Komentar sebelumnya</string>
+    <string name="comments_next">Komentar berikutnya</string>
+    <string name="comments_position">%1$d dari %2$d</string>
+    <string name="comments_opacity">Opasitas</string>
+    <string name="comments_line_thickness">Ketebalan garis</string>
+    <string name="comments_move">Pindahkan komentar</string>
+    <string name="comments_resize">Ubah ukuran komentar</string>
+
+    <string name="lists_none">Tanpa daftar</string>
+    <string name="page_menu_add_comment">Tambah komentar</string>
+    <string name="page_menu_add_text">Tambah teks</string>
+    <string name="page_menu_add_image">Tambah gambar</string>
+
+    <!-- Toolbar & Warna -->
+    <string name="toolbar_label_password">Sandi</string>
+    <string name="toolbar_label_combine">Gabung</string>
+    <string name="toolbar_label_compress">Kompres</string>
+    <string name="toolbar_label_organize">Atur</string>
+    <string name="toolbar_label_crop">Potong</string>
+    <string name="toolbar_label_recognize">OCR</string>
+    <string name="toolbar_label_add_text">Teks</string>
+    <string name="toolbar_tool_text">Teks</string>
+
+    <string name="toolbar_customize">Sesuaikan toolbar</string>
+    <string name="toolbar_save">Simpan toolbar</string>
+    <plurals name="toolbar_customize_hint">
+        <item quantity="other">Seret alat antara toolbar dan Alat lainnya. Toolbar memuat %1$d alat.</item>
+    </plurals>
+    <string name="toolbar_section_toolbar">Toolbar</string>
+    <string name="toolbar_tool_on_bar">%1$s, di toolbar</string>
+    <string name="toolbar_tool_in_more_tools">%1$s, di Alat lainnya</string>
+
+    <string name="toolbar_strikethrough">Coret</string>
+    <string name="toolbar_no_text_to_mark">Halaman ini belum memiliki teks untuk ditandai. Jalankan Kenali teks (OCR) terlebih dahulu (Alat lainnya ▸ Kenali teks).</string>
+
+    <string name="toolbar_draw_freeform">Gambar bebas</string>
+    <string name="toolbar_eraser">Penghapus</string>
+    <string name="toolbar_line_thickness">Ketebalan garis</string>
+    <string name="toolbar_snap_to_shape">Rapikan bentuk</string>
+    <string name="toolbar_snap_on">Rapikan bentuk aktif</string>
+    <string name="toolbar_snap_off">Rapikan bentuk nonaktif</string>
+    <string name="toolbar_stroke_width">Ketebalan garis %1$d</string>
+
+    <string name="toolbar_text_comment">Komentar teks</string>
+    <string name="toolbar_voice_comment">Komentar suara</string>
+    <string name="toolbar_text_size">Ukuran teks</string>
+    <string name="toolbar_text_size_pt">%1$d pt</string>
+
+    <string name="toolbar_color_highlight">Warna sorotan</string>
+    <string name="toolbar_color_underline">Warna garis bawah</string>
+    <string name="toolbar_color_strikethrough">Warna coretan</string>
+    <string name="toolbar_color_drawing">Warna gambar</string>
+    <string name="toolbar_color_text">Warna teks</string>
+    <string name="toolbar_color_comment">Warna komentar</string>
+    <string name="toolbar_opacity">Opasitas</string>
+    <string name="toolbar_opacity_percent">Opasitas %1$d%%</string>
+
+    <string name="prefs_color_blue">Biru</string>
+    <string name="prefs_color_green">Hijau</string>
+    <string name="prefs_color_yellow">Kuning</string>
+    <string name="prefs_color_orange">Oranye</string>
+    <string name="prefs_color_red">Merah</string>
+    <string name="prefs_color_purple">Ungu</string>
+    <string name="prefs_color_light_blue">Biru muda</string>
+    <string name="prefs_color_light_green">Hijau muda</string>
+    <string name="prefs_color_light_yellow">Kuning muda</string>
+    <string name="prefs_color_light_orange">Oranye muda</string>
+    <string name="prefs_color_pink">Merah muda</string>
+    <string name="prefs_color_light_purple">Ungu muda</string>
+    <string name="prefs_color_white">Putih</string>
+    <string name="prefs_color_pale_grey">Abu-abu pucat</string>
+    <string name="prefs_color_light_grey">Abu-abu muda</string>
+    <string name="prefs_color_medium_grey">Abu-abu sedang</string>
+    <string name="prefs_color_dark_grey">Abu-abu tua</string>
+    <string name="prefs_color_black">Hitam</string>
+    <string name="prefs_color_cyan">Sian</string>
+
+    <!-- Edit PDF -->
+    <string name="edit_add_text">Tambah teks</string>
+    <string name="edit_add_image">Tambah gambar</string>
+    <string name="edit_tap_for_text">Ketuk halaman di tempat teks diletakkan</string>
+    <string name="edit_tap_for_image">Ketuk halaman di tempat gambar diletakkan</string>
+
+    <string name="edit_bold">Tebal</string>
+    <string name="edit_italic">Miring</string>
+    <string name="edit_underline">Garis bawah</string>
+    <string name="edit_text_size">Ukuran teks</string>
+    <string name="edit_text_size_pt">Ukuran teks: %1$d pt</string>
+    <string name="edit_font">Font</string>
+    <string name="edit_colour">Warna</string>
+    <string name="edit_align_text">Perataan teks</string>
+    <string name="edit_list">Daftar</string>
+
+    <string name="edit_font_original">Font asli</string>
+    <string name="edit_font_sans">Sans serif</string>
+    <string name="edit_font_serif">Serif</string>
+    <string name="edit_font_mono">Monospace</string>
+
+    <string name="edit_list_desc_none">Tanpa daftar</string>
+    <string name="edit_list_desc_bullet">Daftar poin</string>
+    <string name="edit_list_desc_dash">Daftar strip</string>
+    <string name="edit_list_desc_number">Daftar angka</string>
+    <string name="edit_list_desc_lower">Daftar huruf kecil</string>
+    <string name="edit_list_desc_upper">Daftar huruf besar</string>
+    <string name="edit_list_desc_roman">Daftar romawi</string>
+
+    <string name="edit_align_left">Rata kiri</string>
+    <string name="edit_align_right">Rata kanan</string>
+    <string name="edit_align_center">Rata tengah</string>
+    <string name="edit_align_justify">Rata kiri-kanan</string>
+
+    <string name="edit_edit_text">Edit teks</string>
+    <string name="edit_select_all">Pilih semua</string>
+    <string name="edit_paragraph_text">Teks paragraf</string>
+    <string name="edit_turn_left">Putar kiri</string>
+    <string name="edit_turn_right">Putar kanan</string>
+
+    <!-- Isi & Tanda Tangan -->
+    <string name="fill_element_text">Teks</string>
+    <string name="fill_element_cross">Silang</string>
+    <string name="fill_element_check">Centang</string>
+    <string name="fill_element_dot">Titik</string>
+    <string name="fill_element_box">Kotak membulat</string>
+    <string name="fill_element_line">Garis</string>
+    <string name="fill_element_signature">Tanda tangan</string>
+    <string name="fill_element_initials">Paraf</string>
+
+    <string name="fill_add_text">Tambah teks</string>
+    <string name="fill_add_cross">Tambah tanda silang</string>
+    <string name="fill_add_check">Tambah tanda centang</string>
+    <string name="fill_add_dot">Tambah titik</string>
+    <string name="fill_add_box">Tambah kotak membulat</string>
+    <string name="fill_add_line">Tambah garis</string>
+    <string name="fill_sign_or_initials">Tanda tangan atau paraf</string>
+
+    <string name="fill_add_signature">Tambah tanda tangan</string>
+    <string name="fill_add_initials">Tambah paraf</string>
+    <string name="fill_your_signature">Tanda tangan Anda</string>
+    <string name="fill_your_initials">Paraf Anda</string>
+    <string name="fill_clear_signature">Hapus tanda tangan tersimpan</string>
+    <string name="fill_clear_initials">Hapus paraf tersimpan</string>
+    <string name="fill_tap_place_signature">Ketuk tempat untuk meletakkan tanda tangan</string>
+    <string name="fill_tap_place_initials">Ketuk tempat untuk meletakkan paraf</string>
+
+    <string name="fill_create_signature">Buat tanda tangan</string>
+    <string name="fill_create_initials">Buat paraf</string>
+    <string name="fill_draw_signature_first">Gambar tanda tangan Anda dulu</string>
+    <string name="fill_draw_initials_first">Gambar paraf Anda dulu</string>
+    <string name="fill_tab_draw">Gambar</string>
+    <string name="fill_tab_image">Gambar file</string>
+    <string name="fill_draw_signature_here">Gambar tanda tangan di sini</string>
+    <string name="fill_draw_initials_here">Gambar paraf di sini</string>
+    <string name="fill_save_to_device">Simpan ke perangkat</string>
+
+    <string name="fill_smaller">Lebih kecil</string>
+    <string name="fill_bigger">Lebih besar</string>
+    <string name="fill_colour">Warna</string>
+
+    <!-- Formulir -->
+    <string name="forms_reset">Atur ulang</string>
+    <string name="forms_previous_field">Kolom sebelumnya</string>
+    <string name="forms_next_field">Kolom berikutnya</string>
+
+    <!-- Pesan Aplikasi -->
+    <string name="msg_engine_not_started">ArAr PDF Next gagal dimulai.</string>
+    <string name="msg_file_moved">File ini telah dipindahkan atau dihapus.</string>
+    <string name="msg_opened_own_copy">Membuka salinan ArAr PDF Next. Untuk mengubah file asli, buka kembali dari aplikasi asalnya.</string>
+    <string name="msg_file_access_lost">ArAr PDF Next tidak dapat lagi membuka file ini. Buka ulang dari aplikasi asalnya atau melalui Buka file.</string>
+
+    <string name="msg_undone">%1$s diurungkan</string>
+    <string name="msg_redone">%1$s diulangi</string>
+
+    <string name="msg_tool_blocked_security">Alat ini tidak tersedia karena pengaturan keamanan dokumen.</string>
+    <string name="msg_snap_to_shape_on">Rapikan bentuk aktif</string>
+
+    <string name="msg_search_image_only">Teks di file ini berupa gambar sehingga belum dapat dicari.</string>
+    <string name="msg_search_no_matches">Tidak ada hasil untuk “%1$s”</string>
+
+    <string name="msg_share_subject">Mengirim %1$s</string>
+    <string name="msg_print_disabled">Cetak tidak tersedia: pencetakan dinonaktifkan oleh pembuat dokumen.</string>
+
+    <string name="msg_saved_copy">Salinan tersimpan</string>
+    <string name="msg_saved_downloads">Disimpan sebagai %1$s di Unduhan</string>
+    <string name="msg_saved_in_folder">Disimpan sebagai %1$s di %2$s</string>
+    <string name="msg_scan_folder_lost">Folder pindaian tidak dapat dijangkau lagi, sehingga %1$s disimpan di Unduhan.</string>
+    <string name="msg_saved_downloads_size">Disimpan sebagai %1$s di Unduhan (%2$s)</string>
+
+    <string name="msg_read_aloud_encrypted">Baca lantang tidak tersedia untuk dokumen yang dilindungi kata sandi.</string>
+    <string name="msg_read_aloud_resumed">Melanjutkan bacaan dari tempat terakhir</string>
+    <string name="msg_read_aloud_start_over">Mulai dari awal</string>
+
+    <string name="msg_bookmark_added">Penanda %1$s ditambahkan</string>
+    <string name="msg_bookmark_removed">Penanda %1$s dihapus</string>
+    <string name="msg_bookmarks_cleared">Semua penanda dihapus</string>
+
+    <string name="msg_voice_no_storage">Penyimpanan tidak cukup untuk merekam. Kosongkan sedikit ruang lalu coba lagi.</string>
+    <string name="msg_voice_no_mic">Komentar suara memerlukan akses mikrofon.</string>
+
+    <string name="msg_clip_comment">Komentar</string>
+    <string name="msg_clip_pdf_text">Teks PDF</string>
+    <string name="msg_copied">Disalin</string>
+    <string name="msg_copy_not_allowed">Dokumen ini tidak mengizinkan penyalinan teks.</string>
+
+    <string name="msg_busy_preparing_ocr">Menyiapkan pengenalan teks…</string>
+    <string name="msg_ocr_not_installed">Pengenalan teks tidak terpasang pada build ini.</string>
+    <string name="msg_busy_recognizing">Mengenali teks…</string>
+    <string name="msg_ocr_done">Teks berhasil dikenali. Sekarang dapat dipilih, disalin, dicari, dan disorot.</string>
+    <string name="msg_ocr_nothing">Tidak ada halaman yang perlu dikenali teksnya</string>
+
+    <string name="msg_place_signature">Ketuk tempat untuk meletakkan tanda tangan</string>
+    <string name="msg_place_initials">Ketuk tempat untuk meletakkan paraf</string>
+    <string name="msg_image_unreadable">Gambar tersebut tidak dapat dibaca.</string>
+
+    <string name="msg_sign_read_only">Dokumen ini tidak dapat diubah sehingga tidak dapat ditandatangani.</string>
+    <string name="msg_id_cannot_sign">ID digital ini tidak dapat menandatangani dokumen. %1$s</string>
+    <string name="msg_id_added">ID digital %1$s ditambahkan</string>
+    <string name="msg_id_unusable">ArAr PDF Next tidak dapat menggunakan file ini sebagai ID digital: %1$s</string>
+    <string name="msg_busy_creating_id">Membuat ID digital Anda…</string>
+    <string name="msg_id_created">ID digital berhasil dibuat</string>
+    <string name="msg_busy_signing">Menandatangani…</string>
+    <string name="msg_signed_saved">Ditandatangani dan disimpan</string>
+    <string name="msg_signed_not_saved">Sudah ditandatangani, tetapi %1$s tidak dapat diubah di lokasi aslinya. Simpan salinan untuk menyimpan file bertanda tangan.</string>
+
+    <string name="msg_sig_invalid">Tanda tangan dokumen ini tidak valid.</string>
+    <string name="msg_sig_some_invalid">Setidaknya satu tanda tangan di dokumen ini tidak valid.</string>
+    <string name="msg_sig_valid">Ditandatangani oleh %1$s. Tanda tangan valid.</string>
+    <string name="msg_sig_valid_unknown">Ditandatangani oleh penanda tangan tidak dikenal. Tanda tangan valid.</string>
+    <plurals name="msg_sig_all_valid">
+        <item quantity="other">Semua %1$d tanda tangan valid.</item>
+    </plurals>
+    <string name="msg_sig_unverified">Ditandatangani oleh %1$s. Dokumen tidak berubah, tetapi penanda tangan belum terverifikasi.</string>
+    <string name="msg_sig_unverified_unknown">Ditandatangani oleh penanda tangan tidak dikenal. Dokumen tidak berubah, tetapi penanda tangan belum terverifikasi.</string>
+    <string name="msg_sig_some_unverified">Sudah ditandatangani. Beberapa penanda tangan belum terverifikasi.</string>
+    <string name="msg_sig_details">Detail</string>
+    <string name="msg_signer_trusted">%1$s dipercaya di perangkat ini</string>
+    <string name="msg_signer_trusted_unknown">Penanda tangan ini dipercaya di perangkat ini</string>
+
+    <string name="msg_picture_unreadable">Gambar tidak dapat dibaca.</string>
+    <string name="msg_gif_not_supported">Gambar GIF tidak dapat ditambahkan.</string>
+
+    <string name="msg_form_cleared">Formulir dibersihkan</string>
+    <string name="msg_button_submit">Tombol ini mengirim formulir secara online, yang tidak dilakukan oleh ArAr PDF Next.</string>
+    <string name="msg_suggestions_cleared">Saran dibersihkan</string>
+
+    <string name="msg_that_file_unreadable">File tersebut tidak dapat dibaca.</string>
+    <string name="msg_named_file_unreadable">%1$s tidak dapat dibaca.</string>
+    <string name="msg_files_unreadable">File tidak dapat dibaca.</string>
+
+    <string name="msg_busy_compressing">Mengompres…</string>
+    <string name="msg_compress_no_gain">Ukuran file ini sudah seoptimal mungkin.</string>
+    <string name="msg_busy_combining">Menggabungkan…</string>
+    <string name="msg_busy_setting_password">Mengatur kata sandi…</string>
+    <string name="msg_crop_all">Semua halaman berhasil dipotong.</string>
+    <string name="msg_crop_page">Halaman berhasil dipotong.</string>
+    <string name="msg_busy_exporting_to">Mengekspor ke %1$s…</string>
+    <string name="msg_busy_exporting_images">Mengekspor gambar…</string>
+    <string name="msg_busy_exporting_page">Mengekspor halaman %1$d dari %2$d…</string>
+    <plurals name="msg_images_saved">
+        <item quantity="other">%1$d gambar disimpan ke Pictures/ArAr PDF Next</item>
+    </plurals>
+    <string name="msg_busy_creating_pdf">Membuat PDF…</string>
+    <plurals name="msg_create_first_files">
+        <item quantity="other">Hanya %1$d file pertama yang digunakan.</item>
+    </plurals>
+    <string name="msg_busy_extracting">Mengekstrak…</string>
+
+    <string name="msg_busy_saving_scan">Menyimpan pindaian…</string>
+    <string name="msg_busy_cleaning_page">Membersihkan halaman %1$d dari %2$d…</string>
+
+    <string name="msg_rename_exists">File bernama %1$s sudah ada.</string>
+    <string name="msg_rename_failed">Nama file tidak dapat diubah.</string>
+    <string name="msg_rename_not_here">Nama file ini tidak dapat diubah di sini.</string>
+    <string name="msg_duplicated">Diduplikasi sebagai %1$s di Unduhan</string>
+    <string name="msg_delete_failed">File tidak dapat dihapus.</string>
+    <string name="msg_delete_not_allowed">%1$s tidak dapat dihapus dari ArAr PDF Next: aplikasi asalnya tidak mengizinkan. Hapus dari sana atau hapus dari Terbaru.</string>
+    <string name="msg_file_deleted">%1$s dihapus</string>
+
+    <!-- File, Sistem & Notifikasi -->
+    <string name="files_error_needs_password">Dokumen ini dilindungi kata sandi.</string>
+    <string name="files_error_generic">Terjadi kesalahan.</string>
+    <string name="files_error_no_path">File tidak memiliki jalur lokasi.</string>
+    <string name="files_error_write">File tidak dapat ditulis.</string>
+    <string name="files_error_share">File tidak dapat dibagikan.</string>
+    <string name="files_error_share_no_space">Penyimpanan tidak cukup untuk berbagi. Kosongkan sedikit ruang lalu coba lagi.</string>
+    <string name="files_error_save_downloads">File tidak dapat disimpan ke Unduhan.</string>
+    <string name="files_error_save_image">Gambar tidak dapat disimpan.</string>
+
+    <string name="files_location_internal_storage">Penyimpanan internal</string>
+    <string name="files_location_this_device">Perangkat ini</string>
+    <string name="files_location_downloads">Unduhan</string>
+    <string name="files_location_media">Media</string>
+    <string name="files_location_another_app">Aplikasi lain</string>
+
+    <string name="files_folder_unnamed">Folder</string>
+    <string name="files_bookmark_page">Halaman %1$d</string>
+
+    <string name="main_error_no_app">Tidak ada aplikasi di ponsel ini yang dapat melakukannya.</string>
+    <string name="main_error_not_allowed">Android tidak mengizinkan tindakan tersebut.</string>
+    <string name="main_error_print_not_allowed">Pencetakan tidak diizinkan untuk dokumen ini.</string>
+
+    <string name="service_notification_reading">Membaca lantang</string>
+    <string name="service_notification_paused">Dijeda</string>
+    <string name="service_action_back">Mundur 15 detik</string>
+    <string name="service_action_forward">Maju 15 detik</string>
+    <string name="service_action_stop">Berhenti</string>
 </resources>

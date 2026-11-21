@@ -145,7 +145,7 @@ fun BoxScope.Scrubber(doc: OpenDocument, visible: Boolean, top: Dp, bottom: Dp, 
 private fun BoxScope.ScrubPageBox(visible: Boolean, page: Int, pages: Int) {
     AnimatedVisibility(visible, modifier = Modifier.align(Alignment.Center), enter = fadeIn(tween(100)), exit = fadeOut(tween(250))) {
         Column(
-            Modifier.size(106.dp, 112.dp).background(Color(0xE6262626), RoundedCornerShape(5.dp)).clearAndSetSemantics {},
+            Modifier.size(112.dp, 114.dp).background(Color(0xEB0F172A), RoundedCornerShape(18.dp)).clearAndSetSemantics {},
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(Modifier.height(20.dp))
@@ -411,7 +411,7 @@ fun BoxScope.SelectionHandles(doc: OpenDocument, sel: Selection) {
     val density = LocalDensity.current
     val size = with(density) { 20.dp.toPx() }
     // the reference's handles: 20 dp drops in one blue in both themes
-    val blue = Color(0xFF4285F4)
+    val blue = pdfColors.accent
     val startLabel = stringResource(R.string.viewer_selection_start)
     val endLabel = stringResource(R.string.viewer_selection_end)
     for (start in listOf(true, false)) {

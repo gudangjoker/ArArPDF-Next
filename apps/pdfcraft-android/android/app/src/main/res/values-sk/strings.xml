@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="open_with">Otvoriť v PdfCraft</string>
+    <string name="open_with">Otvoriť v ArAr PDF Next</string>
     <string name="common_ok">OK</string>
     <string name="common_cancel">Zrušiť</string>
     <string name="common_done">Hotovo</string>
@@ -70,7 +70,7 @@
     <string name="home_no_starred_body">Označte súbor hviezdičkou v jeho ponuke aby ste ho tu rýchlo našli.</string>
     <string name="home_device_files_title">Súbory vo vašom zariadení</string>
     <string name="home_device_files_body">Vyberte priečinky, z ktorých sa majú zobraziť súbory PDF, napríklad Dokumenty alebo priečinok Stiahnutia. Súbory otvorené z akéhokoľvek miesta zostanú v zozname Nedávnych.</string>
-    <string name="home_device_files_body_long">Vyberte priečinky, z ktorých sa majú zobraziť súbory PDF, napríklad Dokumenty alebo priečinok Stiahnutia. Android nedovoluje aplikáciám prehľadávať celý priečinok Stiahnutia. PdfCraft vidí iba priečinky, ktoré vyberiete, a súbory otvorené z akéhokoľvek miesta zostanú v zozname Nedávnych.</string>
+    <string name="home_device_files_body_long">Vyberte priečinky, z ktorých sa majú zobraziť súbory PDF, napríklad Dokumenty alebo priečinok Stiahnutia. Android nedovoluje aplikáciám prehľadávať celý priečinok Stiahnutia. ArAr PDF Next vidí iba priečinky, ktoré vyberiete, a súbory otvorené z akéhokoľvek miesta zostanú v zozname Nedávnych.</string>
     <string name="home_no_pdfs_title">Vo vašich priečinkoch nie sú žiadne PDF</string>
     <string name="home_no_pdfs_body">Tu sa zobrazia PDF súbory z priečinkov, ktoré ste pridali.</string>
     <string name="home_add_folder">Pridať priečinok</string>
@@ -146,16 +146,16 @@
     <string name="home_sort_newest">Najneskôr upravené</string>
     <string name="home_no_results">Žiadne výsledky</string>
     <string name="home_no_results_body">Skontrolujte pravopis alebo skúste kratší názov.</string>
-    <string name="home_about_app">O aplikácii PdfCraft</string>
+    <string name="home_about_app">O aplikácii ArAr PDF Next</string>
     <string name="home_preferences">Predvoľby</string>
     <string name="home_help_support">Pomoc a podpora</string>
     <string name="home_help">Pomoc</string>
     <string name="home_report_problem">Nahlásiť problém alebo navrhnúť funkciu</string>
-    <string name="home_leaving_title">Opúšťate PdfCraft</string>
+    <string name="home_leaving_title">Opúšťate ArAr PDF Next</string>
     <string name="home_continue">Pokračovať</string>
     <string name="home_leaving_body">Tým sa vo vašom prehliadači otvorí webová stránka.</string>
     <string name="home_section_notifications">Upozornenia</string>
-    <string name="home_no_notifications">PdfCraft neposiela upozornenia.</string>
+    <string name="home_no_notifications">ArAr PDF Next neposiela upozornenia.</string>
     <string name="home_section_suggestions">Automatické návrhy</string>
     <string name="home_offer_suggestions">Pri vyplňovaní formulárov ponúkať už použité slová</string>
     <string name="home_clear_suggestions">Vymazať návrhy</string>
@@ -170,7 +170,7 @@
     <string name="home_keyboard_shortcuts">Klávesové skratky</string>
     <string name="home_keyboard_shortcuts_body">S pripojenou klávesnicou: N alebo Page Down pre ďalšiu stranu, P alebo Page Up pre predchádzajúcu, šípky na posúvanie, Ctrl+P na tlač a Ctrl plus alebo mínus na priblíženie či oddialenie.</string>
     <string name="home_section_extra">Ďalšie funkcie</string>
-    <string name="home_extra_body">Voliteľné úpravy vzhľadu a fungovania aplikácie PdfCraft.</string>
+    <string name="home_extra_body">Voliteľné úpravy vzhľadu a fungovania aplikácie ArAr PDF Next.</string>
     <string name="home_status_bar_in_documents">Zobraziť stavový riadok v dokumentoch</string>
     <string name="home_status_bar_in_documents_body">Stavový riadok sa zobrazuje spolu s panelmi nástrojov. Keď ich ťuknutím skryjete, strana využije celú obrazovku, vrátane oblasti okolo kamery.</string>
     <string name="home_search_count">Zobraziť počet výsledkov vyhľadávania</string>
@@ -348,7 +348,7 @@
     <string name="voice_play_audio">Prehrať zvuk</string>
     <string name="voice_comment_kind">Hlasový komentár</string>
     <string name="voice_mic_title">Použiť mikrofón?</string>
-    <string name="voice_mic_rationale">Aplikácia PdfCraft potrebuje mikrofón na nahrávanie hlasových komentárov. Povoliť ho môžete v nastaveniach aplikácie.</string>
+    <string name="voice_mic_rationale">Aplikácia ArAr PDF Next potrebuje mikrofón na nahrávanie hlasových komentárov. Povoliť ho môžete v nastaveniach aplikácie.</string>
     <string name="voice_open_settings">Otvoriť nastavenia</string>
     <string name="voice_not_now">Teraz nie</string>
     <string name="pages_title">Strany</string>
@@ -400,7 +400,7 @@
     <string name="sign_remove_id_description">Odstrániť digitálne ID používateľa %1$s</string>
     <string name="sign_remove_id_title">Odstrániť digitálne ID?</string>
     <string name="sign_remove">Odstrániť</string>
-    <string name="sign_remove_id_message">Digitálne ID %1$s bolo z aplikácie PdfCraft odstránené. Dokumenty, ktoré boli už pomocou neho podpísané, si zachovajú svoje podpisy.</string>
+    <string name="sign_remove_id_message">Digitálne ID %1$s bolo z aplikácie ArAr PDF Next odstránené. Dokumenty, ktoré boli už pomocou neho podpísané, si zachovajú svoje podpisy.</string>
     <string name="sign_add">Pridať</string>
     <string name="sign_id_password_prompt">Zadajte heslo chrániace súbor %1$s.</string>
     <string name="sign_create_about">Digitálne ID vytvorené tu je vlastnoručne podpísané: dokument, ktorý ním podpíšete, zobrazí všetky zmeny vykonané po podpísaní, ale nikto iný nepotvrdzuje, že ste to vy. Na to použite súbor ID, ktorý vám vydá organizácia alebo certifikačná autorita.</string>
@@ -413,7 +413,7 @@
     <string name="sign_password_again">Heslo znova</string>
     <string name="sign_password_short">Heslo musí mať aspoň 8 znakov.</string>
     <string name="sign_password_mismatch">Heslá sa nezhodujú.</string>
-    <string name="sign_password_note">Aplikácia PdfCraft heslo neuchováva a nedokáže ho obnoviť; pri každom podpísaní ho zadáte znova.</string>
+    <string name="sign_password_note">Aplikácia ArAr PDF Next heslo neuchováva a nedokáže ho obnoviť; pri každom podpísaní ho zadáte znova.</string>
     <string name="sign_add_your_signature">Pridajte svoj podpis</string>
     <string name="sign_signatures">Podpisy</string>
     <string name="sign_none">Tento dokument nemá žiadne podpisy.</string>
@@ -696,10 +696,10 @@
     <string name="forms_reset">Vymazať</string>
     <string name="forms_previous_field">Predchádzajúce pole</string>
     <string name="forms_next_field">Ďalšie pole</string>
-    <string name="msg_engine_not_started">Aplikáciu PdfCraft sa nepodarilo spustiť.</string>
+    <string name="msg_engine_not_started">Aplikáciu ArAr PDF Next sa nepodarilo spustiť.</string>
     <string name="msg_file_moved">Tento súbor bol presunutý alebo odstránený.</string>
-    <string name="msg_opened_own_copy">Otvorila sa kópia aplikácie PdfCraft. Ak chcete zmeniť pôvodný súbor, otvorte ho znova z aplikácie, v ktorej sa nachádza.</string>
-    <string name="msg_file_access_lost">Aplikácia PdfCraft už tento súbor nedokáže otvoriť. Otvorte ho znova z aplikácie, v ktorej sa nachádza, alebo pomocou tlačidla Otvoriť súbor.</string>
+    <string name="msg_opened_own_copy">Otvorila sa kópia aplikácie ArAr PDF Next. Ak chcete zmeniť pôvodný súbor, otvorte ho znova z aplikácie, v ktorej sa nachádza.</string>
+    <string name="msg_file_access_lost">Aplikácia ArAr PDF Next už tento súbor nedokáže otvoriť. Otvorte ho znova z aplikácie, v ktorej sa nachádza, alebo pomocou tlačidla Otvoriť súbor.</string>
     <string name="msg_undone">%1$s vrátené</string>
     <string name="msg_redone">%1$s znova vykonané</string>
     <string name="msg_tool_blocked_security">Tento nástroj nie je k dispozícii kvôli nastaveniam zabezpečenia dokumentu.</string>
@@ -736,7 +736,7 @@
     <string name="msg_sign_read_only">Tento dokument nie je možné upraviť, preto ho nemožno podpísať.</string>
     <string name="msg_id_cannot_sign">Toto digitálne ID nemôže podpisovať dokumenty. %1$s</string>
     <string name="msg_id_added">Pridaný digitálny identifikátor používateľa %1$s</string>
-    <string name="msg_id_unusable">Aplikácia PdfCraft nemôže tento súbor použiť ako digitálny identifikátor: %1$s</string>
+    <string name="msg_id_unusable">Aplikácia ArAr PDF Next nemôže tento súbor použiť ako digitálny identifikátor: %1$s</string>
     <string name="msg_busy_creating_id">Vytvára sa vaše digitálne ID…</string>
     <string name="msg_id_created">Digitálne ID vytvorené</string>
     <string name="msg_busy_signing">Podpisuje sa…</string>
@@ -761,7 +761,7 @@
     <string name="msg_picture_unreadable">Obrázok sa nepodarilo načítať.</string>
     <string name="msg_gif_not_supported">Obrázky GIF nie je možné pridať.</string>
     <string name="msg_form_cleared">Formulár vymazaný</string>
-    <string name="msg_button_submit">Toto tlačidlo odosiela formulár online, čo aplikácia PdfCraft nepodporuje.</string>
+    <string name="msg_button_submit">Toto tlačidlo odosiela formulár online, čo aplikácia ArAr PDF Next nepodporuje.</string>
     <string name="msg_suggestions_cleared">Návrhy vymazané</string>
     <string name="msg_that_file_unreadable">Tento súbor sa nepodarilo načítať.</string>
     <string name="msg_named_file_unreadable">Súbor %1$s sa nepodarilo načítať.</string>
@@ -776,10 +776,10 @@
     <string name="msg_busy_exporting_images">Exportujú sa obrázky…</string>
     <string name="msg_busy_exporting_page">Exportuje sa strana %1$d z %2$d…</string>
     <plurals name="msg_images_saved">
-        <item quantity="one">%1$d obrázok uložený do Pictures/PdfCraft</item>
-        <item quantity="few">%1$d obrázky uložené do Pictures/PdfCraft</item>
-        <item quantity="many">%1$d obrázkov uložených do Pictures/PdfCraft</item>
-        <item quantity="other">%1$d obrázkov uložených do Pictures/PdfCraft</item>
+        <item quantity="one">%1$d obrázok uložený do Pictures/ArAr PDF Next</item>
+        <item quantity="few">%1$d obrázky uložené do Pictures/ArAr PDF Next</item>
+        <item quantity="many">%1$d obrázkov uložených do Pictures/ArAr PDF Next</item>
+        <item quantity="other">%1$d obrázkov uložených do Pictures/ArAr PDF Next</item>
     </plurals>
     <string name="msg_busy_creating_pdf">Vytvára sa PDF…</string>
     <plurals name="msg_create_first_files">
@@ -796,7 +796,7 @@
     <string name="msg_rename_not_here">Tento súbor sa tu nemôže premenovať.</string>
     <string name="msg_duplicated">Duplikované ako %1$s v priečinku Stiahnuté</string>
     <string name="msg_delete_failed">Súbor sa nepodarilo odstrániť.</string>
-    <string name="msg_delete_not_allowed">%1$s sa nedá odstrániť v aplikácii PdfCraft: aplikácia, z ktorej ste ho otvorili, to nepovoľuje. Odstráňte ho tam alebo ho odstráňte z nedávnych.</string>
+    <string name="msg_delete_not_allowed">%1$s sa nedá odstrániť v aplikácii ArAr PDF Next: aplikácia, z ktorej ste ho otvorili, to nepovoľuje. Odstráňte ho tam alebo ho odstráňte z nedávnych.</string>
     <string name="msg_file_deleted">%1$s odstránený</string>
     <string name="files_error_needs_password">Tento dokument je chránený heslom.</string>
     <string name="files_error_generic">Niečo sa pokazilo.</string>

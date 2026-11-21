@@ -12,9 +12,10 @@
          granting it makes Android refuse IMAGE_CAPTURE. -->
     <uses-feature android:name="android.hardware.camera.any" android:required="false" />
 
-    <!-- Read aloud keeps reading with PdfCraft in the background (a media notification) -->
+    <!-- Read aloud keeps reading with ArAr PDF Next in the background (a media notification) -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".PdfcraftApplication"
